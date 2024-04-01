@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>   
+        <link rel="stylesheet" href="./Pagina_Agenda_Citas.css">  
+        <title>Pagina Inicio de Sesión</title>
+    </head>
+<body>
+    
+    <div class="contenedor-formas register">
+        <div id="informacion">
+            <div id="logo">
+                <h2>Uñas Spa Yaneth Jimenez</h2>
+                <p>"Tu momento de belleza comienza aquí.Agendar tu cita para tener el pacer de consentirte."</p>
+                <img src="./Fondo/fondo.jpeg" alt="">
+            </div>
+            <div id="calendario">
+                <ol>
+                    <h1>calendario</h1>
+                    <div id="meses">
+                        <h3>Marzo</h3>
+                        <h3>2024</h3>
+                    </div>
+                    <div id="semana">
+                        <li class="nombreDia">Do</li>
+                        <li class="nombreDia">Lu</li>
+                        <li class="nombreDia">Ma</li>
+                        <li class="nombreDia">Mi</li>
+                        <li class="nombreDia">Ju</li>
+                        <li class="nombreDia">Vi</li>
+                        <li class="nombreDia">Sa</li>
+                    </div>
+                    <div id="dias" >
+                        <button id="Dia1" class="Dia" onclick="selecdia(1)" disabled="">1</button>
+                        <button id="Dia2" class="Dia" onclick="selecdia(2)" disabled="">2</button>
+                        <button id="Dia3" class="Dia" onclick="selecdia(3)" disabled="">3</button>
+                        <button id="Dia4" class="Dia" onclick="selecdia(4)" disabled="">4</button>
+                        <button id="Dia5" class="Dia" onclick="selecdia(5)" disabled="">5</button>
+                        <button id="Dia6" class="Dia" onclick="selecdia(6)" disabled="">6</button>
+                        <button id="Dia7" class="Dia" onclick="selecdia(7)" disabled="">7</button>
+                        <button id="Dia8" class="Dia" onclick="selecdia(8)" disabled="">8</button>
+                        <button id="Dia9" class="Dia" onclick="selecdia(9)" disabled="">10</button>
+                        <button id="Dia10" class="Dia" onclick="selecdia(10)" disabled="">10</button>
+                        <button id="Dia11" class="Dia" onclick="selecdia(11)" disabled="">11</button>
+                        <button id="Dia12" class="Dia" onclick="selecdia(12)" disabled="">12</button>
+                        <button id="Dia13" class="Dia" onclick="selecdia(13)" disabled="">13</button>
+                        <button id="Dia14" class="Dia" onclick="selecdia(14)" disabled="">14</button>
+                        <button id="Dia15" class="Dia" onclick="selecdia(15)" disabled="">15</button>
+                        <button id="Dia16" class="Dia" onclick="selecdia(16)" disabled="">16</button>
+                        <button id="Dia17" class="Dia" onclick="selecdia(17)"disabled="">17</button>
+                        <button id="Dia18" class="Dia" onclick="selecdia(18)">18</button>
+                        <button id="Dia19" class="Dia" onclick="selecdia(19)">19</button>
+                        <button id="Dia20" class="Dia" onclick="selecdia(20)">20</button>
+                        <button id="Dia21" class="Dia" onclick="selecdia(21)">21</button>
+                        <button id="Dia22" class="Dia" onclick="selecdia(22)">22</button>
+                        <button id="Dia23" class="Dia" onclick="selecdia(23)">23</button>
+                        <button id="Dia24" class="Dia" onclick="selecdia(24)"disabled="">24</button>
+                        <button id="Dia25" class="Dia" onclick="selecdia(25)">25</button>
+                        <button id="Dia26" class="Dia" onclick="selecdia(26)">26</button>
+                        <button id="Dia27" class="Dia" onclick="selecdia(27)">27</button>
+                        <button id="Dia28" class="Dia" onclick="selecdia(28)">28</button>
+                        <button id="Dia29" class="Dia" onclick="selecdia(29)">29</button>
+                        <button id="Dia30" class="Dia" onclick="selecdia(30)">30</button>
+                        <button id="Dia31" class="Dia" onclick="selecdia(31)"disabled="">31</button>
+                    </div>
+                </ol>
+                <div id="horarios">
+                    <div id="bloques" class="hora1">
+                        <h4>horario disponible</h4>
+                        <div id="fila1">
+                            <button id="hora1" class="Hora" onclick="selechora(1)">7Am</button>
+                            <button id="hora2" class="Hora" onclick="selechora(2)">9Am</button>
+                            <button id="hora3" class="Hora" onclick="selechora(3)">11Am</button>
+                        </div>
+                        <div id="fila2">
+                            <button id="hora4" class="Hora" onclick="selechora(4)">2Pm</button>
+                            <button id="hora5" class="Hora" onclick="selechora(5)">4Pm</button>
+                            <button id="hora6" class="Hora" onclick="selechora(6)">6Pm</button>
+                        </div>
+                    </div>
+                    <div id="bloques2" class="hora2">
+                        <div id="colomna1"  >
+                            <h4>horario disponible</h4>
+                            <button id="hora7"class="Hora" onclick="selechora(7)">7Am</button>
+                            <button id="hora8"class="Hora" onclick="selechora(8)">8Am</button>
+                            <button id="hora9"class="Hora" onclick="selechora(9)">9Am</button>
+                            <button id="hora10"class="Hora" onclick="selechora(10)">10Am</button>
+                            <button id="hora11"class="Hora" onclick="selechora(11)">11Am</button>
+                            <button id="hora12"class="Hora" onclick="selechora(12)">12Am</button>
+                        </div>
+                        <div id="columna2">
+                            <button id="hora13"class="Hora" onclick="selechora(13)">2Pm</button>
+                            <button id="hora14"class="Hora" onclick="selechora(14)">3Pm</button>
+                            <button id="hora15"class="Hora" onclick="selechora(15)">4Pm</button>
+                            <button id="hora16"class="Hora" onclick="selechora(16)">5Pm</button>
+                            <button id="hora17"class="Hora" onclick="selechora(17)">6Pm</button>
+                            <button id="hora18"class="Hora" onclick="selechora(18)">7Pm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Seccion iconos de redes sociales-->
+        <div class="formas-informacion">
+            <div class="formas-informacion-childs">
+                <h2>Agenda Tu Cita</h2>
+                <div id="redes" class="iconos">
+                    <i class='bx bxl-whatsapp' ></i>
+                    <i class='bx bxl-tiktok'></i>
+                    <i class='bx bxl-instagram' ></i>
+                    <p>Síguenos en nuestras redes</p>
+                </div>
+                <!--Seccion de formulario de registro-->
+                <form id="formulario" action="/cita" method="post">
+                    <label for="manicurista" >Manicurista</label>
+                    <select id="manicurista" name="manicurista"  required>
+                        <option value=""></option>
+                        <option value="Aura lopez">Aura lopez</option>
+                        <option value="Leidy Carvajal">Leidy Carvajal</option>
+                        <option value="Adrina Perez">Adrina Perez</option>
+                    </select><br>
+                    
+                    <label for="tipoServicio">Tipo de Servicio</label>
+                    <select id="tipoServicio" name="tipoServicio" required>
+                        <option value=""></option>
+                        <option value="manicureBásico" class="servicio" >Manicure básico</option>
+                        <option value="pedicureBásico" class="servicio">Pedicure básico</option>
+                        <option value="esmaltadoPermanente" class="servicio">Esmaltado permanente</option>
+                        <option value="manicureFrancés" class="servicio">Manicure francés</option>
+                        <option value="pedicureFrancés" class="servicio">Pedicure francés</option>
+                        <option value="uñasAcrílicas" class="servicio">Uñas acrílicas</option>
+                        <option value="uñasDeGel" class="servicio">Uñas de gel</option>
+                        <option value="decoraciónDeUñas" class="servicio">Decoración de uñas</option>
+                        <option value="manicureSpa" class="servicio">Manicure spa</option>
+                        <option value="pedicureSpa" class="servicio">Pedicure spa</option>
+                    </select><br>
+                    <div id="citaAgendada">
+                        <input id="fecha" type="text">
+                        <input id="hora" type="text">
+                    </div>
+                </form>
+                <div>
+                    <p id="mensaje1"></p>
+                    <p id="mensaje2"></p>
+                    <p id="confirmar"></p>
+                </div>
+                <button id="AgendarCita" type="submit"  onclick="confirmardatos()">Agendar Cita</button>    
+            </div>
+        </div>
+    </div>
+    <script src="Pagina_Agenda_Cita.js"></script>
+</body>
+</html>
