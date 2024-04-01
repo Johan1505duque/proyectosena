@@ -38,17 +38,31 @@ body{
 #informacion-childs{
     width: 100%;
     padding: 40px;
-}
-
-#informacion-childs h2{
+    margin: 0 0 20px 0;
+    color: #e1d7d7;
     font-size: 1.5rem;
-    color: #333;
+    display: flex;
+    justify-content: center;
 }
 
-#informacion-childs p{
-    margin: 15px 0;
+.informacion-childs {
+    color: #333;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+h2{
+    margin: 0 0 20px o;
+    color: #333;
+    display: flex;
+    justify-content: center;
+}
+
+
+p, #mensajesconfirmar{
+    margin:  30px 30px 30px 30px;
     font-size: 1rem;
-    color: #ffff;
+    color: #333;
 }
 
 #informacion-childs input{
@@ -77,19 +91,6 @@ body{
     border-bottom-right-radius: 20px;
 }
 
-.formas-informacion-childs{
-    margin: 30px;
-}
-
-.formas-informacion-childs h2{
-    color:#333;
-    font-size: 1.5rem;
-}
-
-.formas-informacion-childs p{
-    color:#ffff;
-    font-size: 1rem;
-}
 
 .iconos{
     margin: 15px 0;
@@ -165,7 +166,8 @@ body{
     justify-content: center;
     align-items: center;
 }
-#AgendarCita{
+#AgendarCita,#retornar{
+    margin: 0 15% 0 35%;
     background-color: #cf7a64;
         color: #fff;
         border-radius: 20px;
@@ -174,7 +176,6 @@ body{
         cursor: pointer;
         margin-top: 10px;
         box-shadow: 0 5px 7px rgba(0, 0, 0, .1);
-        justify-content: center;
         align-items: center;
 }
 
@@ -215,13 +216,14 @@ body{
 }
 #logo{
     display: grid;
-     width: 100%;
+    width: 100%;
     padding: 50px;
 
 }
 img{
     width: 350px;
     height: 250px;
+    border-radius: 0 25% 0 25%;
 }
 
 #dias,#semana{
@@ -244,42 +246,59 @@ ol{
     display:flex;
     justify-content: space-between;
     margin-right:30px;
-    margin-left: 30px;
+    margin-left: 30px;   
+}
+#Calendario{
+    width: 100%;  
+    border:solid #333;
+    border-radius: 0 30px 0 30px;
+    margin: 0 30px 0 30px;
+}
+#gracias{
+    width: 100%; 
+    border-radius: 0 30px 0 30px;
+    margin: 0 30px 0 30px;
 }
 .nombreDia{
     text-align: center;
 }
 
-.Hora{
-    background-color: #cf7a64;
-    border: none;
-}
-.Hora.selec{
-    background-color: #fff;
-    
-}
-#calendario{
-    width: 100%;
-    
-}
 .Dia{
     background-color: #cf7a64;
     border: none;
-    cursor: pointer;
+    border-radius: 20%;
 }
-
-.Dia.diaselec{
+.Dia:active{
     background-color: #fff;
 }
+.Dia:hover {
+    background-color: #fff; 
+}
+#horarios{
+    margin: 0 0 25px 0;
+}
+.Hora:hover{
+    background-color: #fff; 
+}
+.Hora{
+    background-color: #cf7a64;
+    border: none;
+    border-radius:20%;
+    grid-template-columns: repeat(3,2fr);
+}
+.hora-ocupada{
+    color: #18dc3f;
+    background-color: aqua;
+}
+
+h5{
+    margin-top: 15px;
+}
 #Dia1{
-    grid-column-start: 6;
+    grid-column-start: 2;
 }
-#Dia3,#Dia10,#Dia17,#Dia24,#Dia31{
-    background-color: #e7b2a4;
-    
-}
-#mensaje{
-    color: #333;
+#Dia7,#Dia14,#Dia21,#Dia28{
+    background-color: #e7b2a4;   
 }
 
 #bienvenida{
