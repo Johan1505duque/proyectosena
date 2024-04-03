@@ -57,6 +57,9 @@ h2{
     display: flex;
     justify-content: center;
 }
+input,label{
+    border-radius: 20px;
+}
 
 
 p, #mensajesconfirmar{

@@ -40,6 +40,7 @@
             }
         })
     });*/
+    
     app.get ("/",function(req,res){
         res.render("Pagina_Agenda_Citas");
     });
@@ -47,10 +48,10 @@
         const datos = req.body;
         console .log(datos);
         let manicurista= datos.manicurista;
-        let servicio = datos.tipoServicio;
+        let servicio = datos.servicio;
         let fecha= datos.fecha;
         let hora= datos.hora;
-       
+        
         let ingresar="INSERT INTO cita(manicurista,servicio,fecha,hora)VALUES('"+manicurista+"','"+servicio +"','"+fecha +"','"+hora +"')";
 
         conexion.query(ingresar,function(error){
@@ -61,6 +62,24 @@
             }
         })
     });
+
+    //consulta a la base de datos para retornar las horas ya agendadas//
+    app.get('/consulta/:manicurista/:servicio/:fecha', (req, res) => {
+        const manicurista = req.params.manicurista;
+        const servicio = req.params.servicio;
+        const fecha = req.params.fecha;
+    
+        // Realiza la consulta a la base de datos utilizando codigo, servicio y fecha
+        const query = 'SELECT * FROM cita WHERE manicurista = ? AND servicio = ? AND fecha = ?';
+        conexion.query(query, [manicurista, servicio, fecha], (err, results) => {
+            if (err) {
+            console.error(err);
+            res.status(500).send('Error al consultar la tabla');
+            } else {
+            res.json(results);
+            }
+        });
+      });
     app.listen(3000, function(){
         console.log("servidor fue creado http://localhost:3000");
     })
@@ -70,7 +89,7 @@
         if (err){
             throw err;
         }else{
-            console.log("muy bien");
+            console.log("tu conexion a tu base de datos fue exitosa");
         }
     })
 

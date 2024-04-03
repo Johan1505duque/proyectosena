@@ -12,7 +12,7 @@ const botonRetornar = document.getElementById("retornar");
 const portada= document.getElementById("encabezadoAgenda");
 const encabezado = document.getElementById("gracias");
 
-
+let conexion="";
 let Dia = "";
 let Hora = "";
 let texhora = "";
@@ -36,8 +36,20 @@ function selecdia(dia) {
     Dia = dia; 
     texdia = dia; 
     confirmarfechas();
-    // Ajusta el formato de la fecha según tu base de datos
-    const fechaSeleccionada = `${dia}`; 
+    //llamar end point de consulta de citas //
+    // URL del endpoint
+const url = 'http://localhost:3000/consulta/'+Manicurista+'/'+Servicio+'/'+texdia;
+console.log(url)
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+    // Manejar la respuesta exitosa
+    console.log(data);
+    })
+    .catch(error => {
+    // Manejar el error
+    console.error('Error:', error);
+    });
     
     // Mostrar el horario correspondiente al servicio seleccionado
     if (servicio.value === "manicureBásico" || servicio.value === "pedicureBásico" || servicio.value === "esmaltadoPermanente" || servicio.value === "uñasAcrílicas" || servicio.value === "uñasDeGel") {
@@ -55,13 +67,16 @@ function selechora(hora) {
     confirmarfechas();
     mensaje2.style.display="block";
     agendarcita.style.display = "block";
-    texhora.disabled = true
+    texhora.disabled = true;
+    
 }
 
 
 function confirmarfechas() {
     mensaje1.innerHTML = `Tu cita será atendida por ${manicurista.options[manicurista.selectedIndex].text}.El servicio a realizar es ${servicio.options[servicio.selectedIndex].text} `
     mensaje2.innerHTML=`tu cita se llevara a cado el dia ${texdia} de Abril. A las ${texhora}.`
+    mensaje3 . innerHTML ='tu cita fue agendada con exito.'+"  "+
+    'Recuerda llegar con 5 minutos de anterioridad'
 }
 
 function confirmardatos() {
