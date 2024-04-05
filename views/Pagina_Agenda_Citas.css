@@ -169,26 +169,7 @@ p, #mensajesconfirmar{
     justify-content: center;
     align-items: center;
 }
-#AgendarCita,#retornar{
-    margin: 0 15% 0 35%;
-    background-color: #cf7a64;
-        color: #fff;
-        border-radius: 20px;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        margin-top: 10px;
-        box-shadow: 0 5px 7px rgba(0, 0, 0, .1);
-        align-items: center;
-}
 
-#mensaje{
-    display:block;
-    margin:0 auto;
-    width: 240px;
-    justify-content: center;
-    margin-top: 0%;
-}
 #resistrarse{
     background-color: #cf7a64;
     color: #fff;
@@ -217,26 +198,22 @@ p, #mensajesconfirmar{
     position: absolute;
     transform: translateY(-300%);
 }
+
 #logo{
     display: grid;
     width: 100%;
     padding: 50px;
 
 }
+
+#bienvenida{
+    width: 350px;
+}
+
 img{
     width: 350px;
     height: 250px;
     border-radius: 0 25% 0 25%;
-}
-
-#dias,#semana{
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(7,2fr);
-    margin-top: 0%;
-}
-ol{
-    margin: 30px;
 }
 
 #formulario{
@@ -245,25 +222,49 @@ ol{
     margin-right:30px;
     margin-left: 30px;  
 }
+
+ol{
+    margin: 30px;
+}
+
+#dias,#semana{
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(7,2fr);
+    margin-top: 0%;
+}
+.botonH {
+    margin: 5px;
+    padding: 8px;
+    border: solid 1px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.botonH-success {
+    background-color: #cf7a64;
+    color: #fff;
+}
+
 #meses{ 
     display:flex;
     justify-content: space-between;
     margin-right:30px;
     margin-left: 30px;   
 }
+
 #Calendario{
     width: 100%;  
     border:solid #333;
     border-radius: 0 30px 0 30px;
     margin: 0 30px 0 30px;
 }
-#gracias{
-    width: 100%; 
-    border-radius: 0 30px 0 30px;
-    margin: 0 30px 0 30px;
+
+#Dia1{
+    grid-column-start: 2;
 }
-.nombreDia{
-    text-align: center;
+
+#Dia7,#Dia14,#Dia21,#Dia28{
+    background-color: #e7b2a4;   
 }
 
 .Dia{
@@ -271,39 +272,40 @@ ol{
     border: none;
     border-radius: 20%;
 }
+
 .Dia:active{
     background-color: #fff;
 }
-.Dia:hover {
+
+.Dia:hover,.Hora:hover{
     background-color: #fff; 
 }
-#horarios{
-    margin: 0 0 25px 0;
-}
-.Hora:hover{
-    background-color: #fff; 
-}
+
 .Hora{
     background-color: #cf7a64;
-    border: none;
+    border:solid 1px;
     border-radius:20%;
-    grid-template-columns: repeat(3,2fr);
-}
-.hora-ocupada{
-    color: #18dc3f;
-    background-color: aqua;
+    padding: 3px;
+    margin: 0 15 10 15;
 }
 
-h5{
-    margin-top: 15px;
-}
-#Dia1{
-    grid-column-start: 2;
-}
-#Dia7,#Dia14,#Dia21,#Dia28{
-    background-color: #e7b2a4;   
+#AgendarCita,#retornar{
+    margin: 0 15% 0 35%;
+    background-color: #cf7a64;
+        color: #fff;
+        border-radius: 20px;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        margin-top: 10px;
+        box-shadow: 0 5px 7px rgba(0, 0, 0, .1);
+        align-items: center;
 }
 
-#bienvenida{
-    width: 350px;
+#gracias{
+    width: 100%; 
+    border-radius: 0 30px 0 30px;
+    margin: 0 30px 0 30px;
 }
+
+

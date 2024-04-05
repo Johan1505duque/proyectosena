@@ -13,15 +13,18 @@
 <body>
     <div class="contenedor-formas register">
         <div id="informacion">
+            <!--Seccion bienvenida-->
             <div id="logo">
                 <h2>Uñas Spa Yaneth Jimenez</h2>
                 <p>"Tu momento de belleza comienza aquí.Agendar tu cita para tener el pacer de consentirte."</p>
                 <img src="./Fondo/imagen2.jpg" alt="">
             </div>
+            <!--Seccion de agradecimiento-->
             <div id="gracias">
                 <h2 > Gracias por agendar con nosotros</h2><br>
                 <img src="./Fondo/images.jpeg" alt="">
             </div>
+            
             <div id="Calendario">
                 <ol>
                     <h1>calendario</h1>
@@ -29,6 +32,7 @@
                         <h3>Abril</h3>
                         <h3>2024</h3>
                     </div>
+                    <!-- Seccion semana-->
                     <div id="semana">
                         <li class="nombreDia">Do</li>
                         <li class="nombreDia">Lu</li>
@@ -38,17 +42,17 @@
                         <li class="nombreDia">Vi</li>
                         <li class="nombreDia">Sa</li>
                     </div>
-
+                    <!--Seccion dias -->
                     <div id="dias"  >
-                        <button id="Dia1" class="Dia" onclick="selecdia('1')">1</button>
-                        <button id="Dia2" class="Dia" onclick="selecdia('2')">2</button>
-                        <button id="Dia3" class="Dia" onclick="selecdia('3')">3</button>
-                        <button id="Dia4" class="Dia" onclick="selecdia('4')">4</button>
+                        <button id="Dia1" class="Dia" onclick="selecdia('1')"disabled="">1</button>
+                        <button id="Dia2" class="Dia" onclick="selecdia('2')"disabled="">2</button>
+                        <button id="Dia3" class="Dia" onclick="selecdia('3')"disabled="">3</button>
+                        <button id="Dia4" class="Dia" onclick="selecdia('4')"disabled="">4</button>
                         <button id="Dia5" class="Dia" onclick="selecdia('5')">5</button>
                         <button id="Dia6" class="Dia" onclick="selecdia('6')">6</button>
                         <button id="Dia7" class="Dia" onclick="selecdia('7')"disabled="">7</button>
                         <button id="Dia8" class="Dia" onclick="selecdia('8')">8</button>
-                        <button id="Dia9" class="Dia" onclick="selecdia('9')">10</button>
+                        <button id="Dia9" class="Dia" onclick="selecdia('9')">9</button>
                         <button id="Dia10" class="Dia" onclick="selecdia('10')">10</button>
                         <button id="Dia11" class="Dia" onclick="selecdia('11')">11</button>
                         <button id="Dia12" class="Dia" onclick="selecdia('12')">12</button>
@@ -73,44 +77,16 @@
                         <button id="Dia31" class="Dia" onclick="selecdia('31')">31</button>
                     </div>
                 </ol>
-                <div id="horarios">
-                    <div id="bloques" class="hora1">
-                        <h4>horario disponible</h4>
-                        <h5>En la mañana</h5>
-                        <div id="fila1">
-                            <button id="hora1" class="Hora" onclick="selechora(' 7Am ')"> 7Am </button>
-                            <button id="hora2" class="Hora" onclick="selechora(' 9Am ')"> 9Am </button>
-                            <button id="hora3" class="Hora" onclick="selechora(' 11Am ')"> 11Am </button>
-                        </div>
-                        <h5> En la tarde</h5>
-                        <div id="fila2">
-                            <button id="hora4" class="Hora" onclick="selechora(' 2Pm ')"> 2Pm </button>
-                            <button id="hora5" class="Hora" onclick="selechora(' 4Pm')"> 4Pm </button>
-                            <button id="hora6" class="Hora" onclick="selechora(' 6Pm ')"> 6Pm </button>
-                        </div>
-                    </div>
-                    <div id="bloques2" class="hora2">
-                        <h4>horario disponible</h4>
-                        <div id="colomna1"  >
-                            <h5>En la mañana</h5>
-                            <button id="hora7"class="Hora" onclick="selechora(' 7Am')"> 7Am </button>
-                            <button id="hora8"class="Hora" onclick="selechora(' 8Am')"> 8Am </button>
-                            <button id="hora9"class="Hora" onclick="selechora(' 9Am')"> 9Am </button><br>
-                            <button id="hora10"class="Hora" onclick="selechora(' 10Am')"> 10Am </button>
-                            <button id="hora11"class="Hora" onclick="selechora(' 11Am')"> 11Am </button>
-                            <button id="hora12"class="Hora" onclick="selechora(' 12Am')"> 12Am </button>
-                        </div>
-                        <div id="columna2">
-                            <h5> En la tarde</h5>
-                            <button id="hora13"class="Hora" onclick="selechora(' 2Pm ')"> 2Pm </button>
-                            <button id="hora14"class="Hora" onclick="selechora(' 3Pm ')"> 3Pm </button>
-                            <button id="hora15"class="Hora" onclick="selechora(' 4Pm ')"> 4Pm </button><br>
-                            <button id="hora16"class="Hora" onclick="selechora(' 5Pm ')"> 5Pm </button>
-                            <button id="hora17"class="Hora" onclick="selechora(' 6Pm ')"> 6Pm </button>
-                            <button id="hora18"class="Hora" onclick="selechora(' 7Pm ')"> 7Pm </button>
-                        </div>
-                    </div>
-                </div>    
+                
+                <!--Seccion horarios diponibles-->
+                <div id="calenhoras">
+                    <div id="bloques">
+                        
+                    </div>   
+                    <div id="bloques2">
+    
+                    </div> 
+                </div>
             </form>
             </div>
         </div>
@@ -126,6 +102,7 @@
                 </div>
                 <!--Seccion de formulario de registro-->
                 <form id="formulario" action="/cita" method="post" >
+                    <!-- Seccion manicuristas-->
                     <label for="manicurista" >Manicurista</label>
                     <select id="manicurista" name="manicurista"  required>
                         <option value=""></option>
@@ -134,7 +111,7 @@
                         <option value="Adrina Perez">Adrina Perez</option>
                         <option value="Adrina Perez">Camila Martinez</option>
                     </select><br>
-                    
+                    <!-- Seccion tipos de servicios-->
                     <label for="servicio">Tipo de Servicio</label>
                     <select id="servicio" name="servicio" required>
                         <option value=""></option>
@@ -158,10 +135,9 @@
                 <button id="AgendarCita" type="submit" onclick="confirmardatos()">Agendar Cita</button>
                 <button id="retornar"  type="submit" onclick="retornar()">Mas Servicios</button>
             </div>
-            
-    </div>
+        </div>
     <script 
     src="Pagina_Agenda_Cita.js">
-</script>
+    </script>
 </body>
 </html>
