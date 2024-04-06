@@ -164,7 +164,7 @@ function confirmarfechas() {
 
 //funcion que envia datos a la base de datos 
 function confirmardatos() {
-    
+    //objeto que almacena los datos de la cita
     let datos = {
         manicurista: Manicurista,
         servicio: Servicio,
@@ -172,7 +172,7 @@ function confirmardatos() {
         hora: texhora
     };
     
-    
+    //metodo para enviar los datos a la base de datos por medio del metodo json
     fetch('/cita', {
         method: 'POST',
         headers: {
@@ -188,6 +188,8 @@ function confirmardatos() {
     })
     retornar()
 }
+
+//funcion que recarga la pagina para agendar una nueva cita
 function retornar(){
     if (citaAgendada) {
         portada.style.display = "none";
@@ -199,9 +201,9 @@ function retornar(){
         botonRetornar.style.display = "block";
         mensaje3.style.display ="block"
         citaAgendada = false;
-    } 
+    }
+    // Recargar la página
     else {
-        // Recargar la página
         window.location.href = "/";
     }
 }
