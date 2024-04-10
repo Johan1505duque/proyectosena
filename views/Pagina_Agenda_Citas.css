@@ -9,8 +9,8 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    background-image: url(./Fondo/WhatsApp\ Image\ 2024-01-19\ at\ 7.41.21\ AM.jpeg);
+    height: 95vh;
+    background-image: url(./Fondo/images\ \(1\).jpeg);
     background-size:contain;
 }
 
@@ -21,11 +21,11 @@ body{
     height: 500px;
     max-width: 900px;
     transition: all 1s ease;
-    margin: 10px;
 }
 
 #informacion{
     width: 100%;
+    margin: 40px 0 25px 15px;
     display: flex;
     align-items: center;
     text-align: center;
@@ -86,11 +86,12 @@ p, #mensajesconfirmar{
 
 .formas-informacion{
     width: 100%;
+    margin: 40px 0 25px 0;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #e7b2a4;
-    border-top-right-radius: 0;
+    border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
 
@@ -252,12 +253,7 @@ ol{
     margin-left: 30px;   
 }
 
-#Calendario{
-    width: 100%;  
-    border:solid #333;
-    border-radius: 0 30px 0 30px;
-    margin: 0 30px 0 30px;
-}
+
 
 #Dia1{
     grid-column-start: 2;
@@ -281,15 +277,18 @@ ol{
     background-color: #fff; 
 }
 
-.Hora{
+.horas {
+    width: 100%;  
     background-color: #cf7a64;
-    border:solid 1px;
-    border-radius:20%;
+    border: none;
+    border-radius:20px;
     padding: 3px;
-    margin: 0 15 10 15;
+    cursor: pointer;
+    box-shadow: 0px 10px 7px rgba(0, 0, 0, .1);
+    margin: 0px 20px 0 20px;
 }
 
-#AgendarCita,#retornar{
+.botones{
     margin: 0 15% 0 35%;
     background-color: #cf7a64;
         color: #fff;
@@ -301,6 +300,7 @@ ol{
         box-shadow: 0 5px 7px rgba(0, 0, 0, .1);
         align-items: center;
 }
+
 
 #gracias{
     width: 100%; 
