@@ -80,10 +80,11 @@ function camposSelect() {
 
 // funcion que al seleccionar el dia se despliega el horario de servicio
 function selecdia(dia) {
-    texdia = dia; 
+    texdia=dia
+    console.log(dia)
     confirmarfechas();
     //se realiza el llamado  a la url end point de consulta de citas //
-    const url = 'http://localhost:3000/consulta/'+Manicurista+'/'+Servicio+'/'+texdia;
+    const url = `http://localhost:3000/consulta/${Manicurista}/${Servicio}/${texdia}`;
     console.log(url)
     fetch(url)
 .then(response => response.json())
