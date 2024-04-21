@@ -77,6 +77,127 @@ function camposSelect() {
         redesSociales.style.display = "none";
     }
 }
+// calendario
+const calendar = document.getElementById('Calendario');
+let currentMonth;
+let currentYear;
+// Función para mostrar el calendario de un mes específico de un año
+function showMonth(month, year) {
+  currentMonth = month;
+  currentYear = year;
+  // se crea el contenedor que almacena los meses y los años 
+  const monthYearHeader = document.createElement('div');
+  //se crea el contenedor que almacena tanto los botones para pasar los meses,los meses y los años 
+  const buttonContainer = document.createElement('div');
+  buttonContainer.classList.add('button-container');
+  // se crea el boton para pasar los meses hacia atras
+  const previousButton = document.createElement('button');
+  const nextButton = document.createElement('button');
+  previousButton.textContent = '<';
+  // se llama a la funcion que contiene el arreglo que contiene los meses
+  monthYearHeader.textContent = `${getMonthName(month)} ${year} `;
+  calendar.innerHTML = '';
+  monthYearHeader.classList.add('month-year');
+  calendar.appendChild(buttonContainer);
+  previousButton.addEventListener('click', previousMonth);
+  
+      nextButton.textContent = '>';
+      nextButton.addEventListener('click', nextMonth);
+      
+      buttonContainer.appendChild(previousButton);
+      buttonContainer.appendChild(monthYearHeader);
+      buttonContainer.appendChild(nextButton);
+
+  const table = document.createElement('table');
+  table.classList.add('month-table');
+
+  // Crear cabecera de días de la semana
+  const daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+  const headerRow = document.createElement('tr');
+  daysOfWeek.forEach(day => {
+    const th = document.createElement('th');
+    th.textContent = day;
+    headerRow.appendChild(th);
+  });
+  table.appendChild(headerRow);
+
+  // Obtener el primer día de la semana del mes y el último día del mes
+  const firstDayOfMonth = new Date(year, month, 1);
+  const lastDayOfMonth = new Date(year, month + 1, 0);
+  const startingDay = firstDayOfMonth.getDay();
+  const totalDays = lastDayOfMonth.getDate();
+
+  // Crear filas para los días del mes
+  let date = 1;
+  for (let i = 0; i < 6; i++) {
+    const row = document.createElement('tr');
+    for (let j = 0; j < 7; j++) {
+      const td = document.createElement('td');
+      if (i === 0 && j < startingDay) {
+        // Celdas vacías para los días previos al primer día del mes
+        td.textContent = '';
+        td.classList.add('past-day');
+      } else if (date > totalDays) {
+        // Celdas vacías para los días posteriores al último día del mes
+        td.textContent = "";
+        td.classList.add('past-day');
+      } else {
+        // Celdas para los días del mes actual
+        td.textContent = date;
+        if (year < new Date().getFullYear() || (year === new Date().getFullYear() && month < new Date().getMonth()) || (year === new Date().getFullYear() && month === new Date().getMonth() && date < new Date().getDate())) {
+          // Establecer clase para los días pasados
+          td.classList.add('past-day');
+        } else {
+          td.textContent = date;
+          // Establecer clase para los días activos
+          td.addEventListener('click', (function(currentDate) {
+            return function() {
+              let fechaseleccionada =`${year}/${month + 1}/${currentDate}`;
+              //selecdia(fechaseleccionada)
+              console.log(fechaseleccionada)
+            }
+          })(date));
+        }
+        date++;
+      }
+      row.appendChild(td);
+    }
+    table.appendChild(row);
+  }
+
+  calendar.appendChild(table);
+}
+
+// Función para obtener el nombre del mes
+function getMonthName(month) {
+  const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+  return months[month];
+}
+
+// Función para ir al mes anterior
+function previousMonth() {
+  currentMonth--;
+  if (currentMonth < 0) {
+    currentMonth = 11;
+    currentYear--;
+  }
+  showMonth(currentMonth, currentYear);
+}
+
+// Función para ir al mes siguiente
+function nextMonth() {
+  currentMonth++;
+  if (currentMonth > 11) {
+    currentMonth = 0;
+    currentYear++;
+  }
+  showMonth(currentMonth, currentYear);
+}
+
+// Mostrar el calendario del mes actual al cargar la página
+const today = new Date();
+showMonth(today.getMonth(), today.getFullYear());
+
 
 // funcion que al seleccionar el dia se despliega el horario de servicio
 function selecdia(dia) {
