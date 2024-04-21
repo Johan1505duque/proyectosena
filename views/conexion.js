@@ -1,95 +1,72 @@
- //conexion a la base de datos//
-    let  mysql = require("mysql")
-    let conexion = mysql.createConnection({
-        host:"localhost",
-        database:"unasspayj",
-        user:"root",
-        password:""
-    });
-// llamar los metodos de la libreria //
-    const express= require("express");
-    const app = express();
-    app.set("view engine","ejs");
-    app.use (express.json());
-    app.use (express.static('views'));
-    
-    app.use (express.urlencoded({extended:false}));
-    
-    /*app.get ("/",function(req,res){
-        res.render("Pagina_login_Registro");
-    });
+const express = require("express");
+const mysql = require("mysql");
 
-    
-    app.post("/validar",function(req,res){
-        const datos = req.body;
-        console .log(datos);
-        let nombre= datos.nombres;
-        let email = datos.email;
-        let celular= datos.celular;
-        let validaremail= datos.confirmemail;
-        let contraseña= datos.password;
-        let validarcon= datos.confirmepassword
+const app = express();
+const PORT = 3000;
 
-        let ingresar="INSERT INTO usuario(nombres,email,celular,confirmemail,password,confirmepassword)VALUES('"+nombre +"','"+email +"','"+celular +"','"+validaremail +"','"+contraseña +"','"+validarcon +"')";
+const conexion = mysql.createConnection({
+    host: "localhost",
+    database: "unasspayj",
+    user: "root",
+    password: ""
+});
 
-        conexion.query(ingresar,function(error){
-            if(error){
-                throw error;
-            }else{
-                console.log("datos listos");
-            }
-        })
-    });*/
-    
-    app.get ("/",function(req,res){
-        res.render("Pagina_Agenda_Citas");
-    });
-    app.post("/cita",function(req,res){
-        const datos = req.body;
-        console .log(datos);
-        let manicurista= datos.manicurista;
-        let servicio = datos.servicio;
-        let fecha= datos.fecha;
-        let hora= datos.hora;
-        
-        let ingresar="INSERT INTO cita(manicurista,servicio,fecha,hora)VALUES('"+manicurista+"','"+servicio +"','"+fecha +"','"+hora +"')";
+conexion.connect(function(err) {
+    if (err) {
+        console.error('Error al conectar a la base de datos:', err);
+        throw err;
+    } else {
+        console.log("Conexión exitosa a la base de datos");
+    }
+});
 
-        conexion.query(ingresar,function(error){
-            if(error){
-                throw error;
-            }else{
-                console.log("datos listos");
-            }
-        })
-    });
+app.set("view engine", "ejs");
+app.use(express.json());
+app.use(express.static('views'));
+app.use(express.urlencoded({ extended: false }));
 
-    //consulta a la base de datos para retornar las horas ya agendadas//
-    app.get('/consulta/:manicurista/:servicio/:fecha', (req, res) => {
-        const manicurista = req.params.manicurista;
-        const servicio = req.params.servicio;
-        const fecha = req.params.fecha;
-    
-        // Realiza la consulta a la base de datos utilizando codigo, servicio y fecha
-        const query = 'SELECT * FROM cita WHERE manicurista = ? AND servicio = ? AND fecha = ?';
-        conexion.query(query, [manicurista, servicio, fecha], (err, results) => {
-            if (err) {
-            console.error(err);
-            res.status(500).send('Error al consultar la tabla');
-            } else {
-            res.json(results);
-            }
-        });
-      });
-    app.listen(3000, function(){
-        console.log("servidor fue creado http://localhost:3000");
-    })
+app.get("/", function(req, res) {
+    res.render("Pagina_Agenda_Citas");
+});
 
-//comprobacion de que la base de datos fue conectada con exito//
-    conexion.connect(function(err){
-        if (err){
-            throw err;
-        }else{
-            console.log("tu conexion a tu base de datos fue exitosa");
+app.post("/cita", function(req, res) {
+    const datos = req.body;
+    const manicurista = datos.manicurista;
+    const servicio = datos.servicio;
+    const fecha = datos.fecha;
+    const hora = datos.hora;
+
+    const query = "INSERT INTO cita(manicurista, servicio, fecha) VALUES (?, ?, ?, ?)";
+    conexion.query(query, [manicurista, servicio, fecha], function(error, results) {
+        if (error) {
+            console.error('Error al insertar datos en la base de datos:', error);
+            res.status(500).send('Error al insertar los datos en la base de datos');
+        } else {
+            console.log("Datos insertados correctamente");
+            res.status(200).send('Datos insertados correctamente');
         }
-    })
+    });
+});
+
+app.get('/consulta/:manicurista/:servicio/:fecha', (req, res) => {
+    const manicurista = req.params.manicurista;
+    const servicio = req.params.servicio;
+    const fecha = req.params.fecha;
+
+    const query = 'SELECT * FROM cita WHERE manicurista = ? AND servicio = ? AND fecha = ?';
+    conexion.query(query, [manicurista, servicio, fecha], (error, results) => {
+        if (error) {
+            console.error('Error al consultar la base de datos:', error);
+            res.status(500).send('Error al consultar la base de datos');
+        } else {
+            res.json(results);
+        }
+    });
+});
+
+app.listen(PORT, function() {
+    console.log(`Servidor escuchando en el puerto http://localhost:3000`);
+});
+
+
 
