@@ -1,7 +1,6 @@
 // Constantes globales
 const formulario = document.getElementById("formulario");
 const botonhoras1 = document.getElementById("bloques");
-const botonhoras2 = document.getElementById("bloques2");
 const mensaje1 = document.getElementById("mensaje1");
 const mensaje2 = document.getElementById("mensaje2");
 const mensaje3 = document.getElementById("confirmar");
@@ -21,8 +20,8 @@ let fechaseleccionada = "";
 
 let citaAgendada = true;
 // Arreglos globales que almacenan los horarios de los servicios
-let horario = [];
-let horario2 = [];
+let horario = ['7Am', '8Am', '9Am', '10Am', '11Am', '12Am', '2Pm', '3Pm', '4Pm', '5Pm', '6Pm', '7Pm'];
+let horario2 = ['7Am', '9Am', '11Am', '2Pm', '4Pm', '6Pm'];
 
 encabezado.style.display = "none";
 botonRetornar.style.display = "none";
@@ -31,18 +30,12 @@ mensaje2.style.display = "none";
 mensaje3.style.display = "none";
 Calendario.style.display = "none";
 
-// Horario tipo 1
-horario.push('7Am', '8Am', '9Am', '10Am', '11Am', '12Am', '2Pm', '3Pm', '4Pm', '5Pm', '6Pm', '7Pm');
-
-// Horario tipo 2
-horario2.push('7Am', '9Am', '11Am', '2Pm', '4Pm', '6Pm');
-
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("manicurista").addEventListener("change", function() {
+    document.getElementById("manicurista").addEventListener("change", function () {
         Manicurista = manicurista.value;
         camposSelect();
     });
-    document.getElementById("servicio").addEventListener("change", function() {
+    document.getElementById("servicio").addEventListener("change", function () {
         Servicio = servicio.value;
         camposSelect();
     });
@@ -124,11 +117,11 @@ function showMonth(month, year) {
                     td.classList.add('past-day');
                 } else {
                     td.textContent = date;
-                    td.addEventListener('click', (function(currentDate) {
-                        return function() {
-                            fechaseleccionada = `${year}/${month + 1}/${currentDate}`;
+                    td.addEventListener('click', (function (currentDate) {
+                        return function () {
+                            fechaseleccionada = `${year}-${month + 1}-${currentDate}`;
                             texdia = fechaseleccionada;
-                            selecdia(fechaseleccionada);
+                            selecdia();
                         }
                     })(date));
                 }
@@ -173,63 +166,93 @@ const today = new Date();
 showMonth(today.getMonth(), today.getFullYear());
 
 // Función que al seleccionar el día despliega el horario de servicio
-function selecdia(fechaseleccionada) {
+function selecdia() {
     texdia = fechaseleccionada;
-    console.log(fechaseleccionada)
     confirmarfechas();
-    const url = `http://localhost:3000/consulta/${Manicurista}/${Servicio}/${texdia}`;
-    console.log(url)
-    fetch(url)
-        .then(response => response.json())
-        .then(cita => {
-            console.log(cita);
 
-            let horasconsultas = [];
+    fetch("/consulta", {
+        method: "POST",
+        body: JSON.stringify({
+            manicurista: Manicurista,
+            servicio: Servicio,
+            fecha: texdia
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos');
+        }
+        return response.json();
+    })
+    .then(cita => {
+        console.log(cita);
 
-            cita.forEach(consulta => {
-                const horaConsulta = consulta.Hora.trim();
-                horasconsultas.push(horaConsulta);
-            });
+        let horasconsultas = [];
 
-            const horasDisponibles = horario.filter(hora => ! horasconsultas.includes(hora));
-
-            botonhoras1.innerHTML = '';
-            const encabesadohoras = document.createElement('h4');
-            encabesadohoras.textContent = 'Horas Disponibles';
-            botonhoras1.appendChild(encabesadohoras);
-
-            horasDisponibles.forEach(hora => {
-                const botonHora = document.createElement('button');
-                botonHora.textContent = hora;
-                botonHora.classList.add('botonH', 'botonH-success');
-                botonHora.addEventListener('click', function() {
-                    console.log(`Hora seleccionada: ${hora}`);
-                    texhora = hora;
-                    mensaje2.style.display = "block";
-                    agendarcita.style.display = "block";
-                });
-                botonhoras1.appendChild(botonHora);
-            });
-
-            console.log(horario)
-
-        })
-
-        .catch(error => {
-            console.error('Error:', error);
+        cita.forEach(consulta => {
+            const horaConsulta = consulta.hora.trim();  // Asegurarse de que coincida con el campo de la base de datos
+            horasconsultas.push(horaConsulta);
+        });
+        
+        // Remover la clase 'selected-day' de todos los elementos td (días) del calendario
+        const allDays = document.querySelectorAll('#Calendario td');
+        allDays.forEach(day => {
+        day.classList.remove('selected-day');
         });
 
-    if (servicio.value === "manicureBásico" || servicio.value === "pedicureBásico" || servicio.value === "esmaltadoPermanente" || servicio.value === "uñasAcrílicas" || servicio.value === "uñasDeGel") {
-        botonhoras1.style.display = "none"; 
+    // Agregar la clase 'selected-day' al día seleccionado
+    const selectedDay = document.querySelector(`#Calendario td[data-date="${fechaseleccionada}"]`);
+    if (selectedDay) {
+        selectedDay.classList.add('selected-day');
+    }
+
+
+        // Filtrar las horas disponibles
+        const horasDisponibles = horario.filter(hora => !horasconsultas.includes(hora));
+
+        // Limpiar el contenido anterior
+        botonhoras1.innerHTML = ''; // Limpiar el contenido antes de agregar los nuevos botones
+        const tituloHorasDisponibles = document.createElement('h4');
+        tituloHorasDisponibles.textContent = 'Horas disponibles';
+        botonhoras1.appendChild(tituloHorasDisponibles);
+
+        // Crear botones para cada hora disponible
+        horasDisponibles.forEach(hora => {
+            const botonHora = document.createElement('button');
+            botonHora.textContent = hora;
+            botonHora.classList.add('botonH'); // Clase actualizada para coincidir con la clase en el CSS
+          // Event listener para el clic en una hora disponible
+botonHora.addEventListener('click', function () {
+    console.log(`Hora seleccionada: ${hora}`);
+    texhora = hora;
+    mensaje2.innerHTML = `Tu cita se llevará a cabo el día ${texdia}. A las ${texhora}.`;
+    mensaje2.style.display = "block";
+    agendarcita.style.display = "block";
+});
+            botonhoras1.appendChild(botonHora);
+        });
+
+        console.log(horasDisponibles);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+    // Mostrar u ocultar el contenedor de botones de horas según el tipo de servicio seleccionado
+    if (Servicio === "manicure Básico" || Servicio === "pedicure Básico" || Servicio === "esmaltado Permanente" || Servicio === "uñas Acrílicas" || Servicio === "uñas De Gel") {
+        botonhoras1.style.display = "none"; // Ocultar el contenedor si no se requieren horas
     } else {
-        botonhoras1.style.display = "block"; 
+        botonhoras1.style.display = "block"; // Mostrar el contenedor si se requieren horas
     }
 }
 
 // Función que almacena mensajes informativos 
 function confirmarfechas() {
     mensaje1.innerHTML = `Tu cita será atendida por ${manicurista.options[manicurista.selectedIndex].text}. El servicio a realizar es ${servicio.options[servicio.selectedIndex].text}.`;
-    mensaje2.innerHTML = `Tu cita se llevará a cabo el día ${texdia} de Abril. A las ${texhora}.`;
+    mensaje2.innerHTML = `Tu cita se llevará a cabo el día ${texdia}. A las ${texhora}.`;
     mensaje3.innerHTML = 'Tu cita fue agendada con éxito. Recuerda llegar con 5 minutos de anterioridad.';
 }
 
@@ -241,7 +264,7 @@ function confirmardatos() {
         fecha: texdia,
         hora: texhora
     };
-    
+
     fetch('/cita', {
         method: 'POST',
         headers: {
@@ -251,16 +274,23 @@ function confirmardatos() {
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error('Error al enviar los datos al servidor');
+            throw new Error('Error en la solicitud de agendar cita');
         }
-        return response.json();
+        return response.text(); // Obtener la respuesta como texto sin procesar
     })
     .then(data => {
-        console.log('Cita registrada:', data);
-        retornar();
+        console.log('Respuesta recibida:', data); // Imprimir la respuesta recibida
+        if (data.includes('Datos insertados correctamente')) {
+            console.log('Cita registrada correctamente');
+            retornar();
+        } else {
+            throw new Error('Error al agendar la cita: ' + data); // Lanzar un error con la respuesta recibida
+        }
     })
     .catch(error => {
         console.error('Error:', error);
+        // Mostrar un mensaje de error al usuario
+        alert('Error al agendar la cita. Por favor, inténtalo de nuevo más tarde.');
     });
 }
 
@@ -271,6 +301,7 @@ function retornar() {
         agendarcita.style.display = "none";
         mensaje1.style.display = "none";
         mensaje2.style.display = "none";
+        botonhoras1.style.display= "none";
         Calendario.style.display = "none";
         encabezado.style.display = "block";
         botonRetornar.style.display = "block";

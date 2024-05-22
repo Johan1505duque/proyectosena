@@ -1,6 +1,5 @@
 const express = require("express");
 const mysql = require("mysql");
-
 const app = express();
 const PORT = 3000;
 
@@ -30,14 +29,10 @@ app.get("/", function(req, res) {
 });
 
 app.post("/cita", function(req, res) {
-    const datos = req.body;
-    const manicurista = datos.manicurista;
-    const servicio = datos.servicio;
-    const fecha = datos.fecha;
-    const hora = datos.hora;
+    const { manicurista, servicio, fecha, hora } = req.body;
 
-    const query = "INSERT INTO cita(manicurista, servicio, fecha) VALUES (?, ?, ?, ?)";
-    conexion.query(query, [manicurista, servicio, fecha], function(error, results) {
+    const query = "INSERT INTO citas (manicurista, servicio, fecha, hora) VALUES (?, ?, ?, ?)";
+    conexion.query(query, [manicurista, servicio, fecha, hora], function(error, results) {
         if (error) {
             console.error('Error al insertar datos en la base de datos:', error);
             res.status(500).send('Error al insertar los datos en la base de datos');
@@ -48,12 +43,10 @@ app.post("/cita", function(req, res) {
     });
 });
 
-app.get('/consulta/:manicurista/:servicio/:fecha', (req, res) => {
-    const manicurista = req.params.manicurista;
-    const servicio = req.params.servicio;
-    const fecha = req.params.fecha;
+app.post('/consulta', (req, res) => {
+    const { manicurista, servicio, fecha } = req.body;
 
-    const query = 'SELECT * FROM cita WHERE manicurista = ? AND servicio = ? AND fecha = ?';
+    const query = 'SELECT * FROM citas WHERE manicurista = ? AND servicio = ? AND fecha = ?';
     conexion.query(query, [manicurista, servicio, fecha], (error, results) => {
         if (error) {
             console.error('Error al consultar la base de datos:', error);
@@ -67,6 +60,4 @@ app.get('/consulta/:manicurista/:servicio/:fecha', (req, res) => {
 app.listen(PORT, function() {
     console.log(`Servidor escuchando en el puerto http://localhost:3000`);
 });
-
-
 
