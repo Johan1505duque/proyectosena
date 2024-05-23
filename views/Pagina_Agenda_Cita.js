@@ -53,117 +53,117 @@ function camposSelect() {
 }
 
 // Calendario
-const calendar = document.getElementById('Calendario');
-let currentMonth;
-let currentYear;
+const calendario = document.getElementById('Calendario');
+let mesActual;
+let anioActual;
 
 // Función para mostrar el calendario de un mes específico de un año
-function showMonth(month, year) {
-    currentMonth = month;
-    currentYear = year;
+function mostrarMes(mes, anio) {
+    mesActual = mes;
+    anioActual = anio;
 
-    const monthYearHeader = document.createElement('div');
-    const buttonContainer = document.createElement('div');
-    buttonContainer.classList.add('button-container');
+    const encabezadoMesAnio = document.createElement('div');
+    const contenedorBotones = document.createElement('div');
+    contenedorBotones.classList.add('button-container');
 
-    const previousButton = document.createElement('button');
-    const nextButton = document.createElement('button');
-    previousButton.textContent = '<';
+    const botonAnterior = document.createElement('button');
+    const botonSiguiente = document.createElement('button');
+    botonAnterior.textContent = '<';
 
-    monthYearHeader.textContent = `${getMonthName(month)} ${year} `;
-    calendar.innerHTML = '';
-    monthYearHeader.classList.add('month-year');
-    calendar.appendChild(buttonContainer);
-    previousButton.addEventListener('click', previousMonth);
+    encabezadoMesAnio.textContent = `${obtenerNombreMes(mes)} ${anio} `;
+    calendario.innerHTML = '';
+    encabezadoMesAnio.classList.add('month-year');
+    calendario.appendChild(contenedorBotones);
+    botonAnterior.addEventListener('click', mesAnterior);
 
-    nextButton.textContent = '>';
-    nextButton.addEventListener('click', nextMonth);
+    botonSiguiente.textContent = '>';
+    botonSiguiente.addEventListener('click', mesSiguiente);
 
-    buttonContainer.appendChild(previousButton);
-    buttonContainer.appendChild(monthYearHeader);
-    buttonContainer.appendChild(nextButton);
+    contenedorBotones.appendChild(botonAnterior);
+    contenedorBotones.appendChild(encabezadoMesAnio);
+    contenedorBotones.appendChild(botonSiguiente);
 
-    const table = document.createElement('table');
-    table.classList.add('month-table');
+    const tabla = document.createElement('table');
+    tabla.classList.add('month-table');
 
-    const daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
-    const headerRow = document.createElement('tr');
-    daysOfWeek.forEach(day => {
+    const diasDeLaSemana = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+    const filaEncabezado = document.createElement('tr');
+    diasDeLaSemana.forEach(dia => {
         const th = document.createElement('th');
-        th.textContent = day;
-        headerRow.appendChild(th);
+        th.textContent = dia;
+        filaEncabezado.appendChild(th);
     });
-    table.appendChild(headerRow);
+    tabla.appendChild(filaEncabezado);
 
-    const firstDayOfMonth = new Date(year, month, 1);
-    const lastDayOfMonth = new Date(year, month + 1, 0);
-    const startingDay = firstDayOfMonth.getDay();
-    const totalDays = lastDayOfMonth.getDate();
+    const primerDiaDelMes = new Date(anio, mes, 1);
+    const ultimoDiaDelMes = new Date(anio, mes + 1, 0);
+    const diaDeInicio = primerDiaDelMes.getDay();
+    const totalDias = ultimoDiaDelMes.getDate();
 
-    let date = 1;
+    let fecha = 1;
     for (let i = 0; i < 6; i++) {
-        const row = document.createElement('tr');
+        const fila = document.createElement('tr');
         for (let j = 0; j < 7; j++) {
             const td = document.createElement('td');
-            if (i === 0 && j < startingDay) {
+            if (i === 0 && j < diaDeInicio) {
                 td.textContent = '';
                 td.classList.add('past-day');
-            } else if (date > totalDays) {
+            } else if (fecha > totalDias) {
                 td.textContent = "";
                 td.classList.add('past-day');
             } else {
-                td.textContent = date;
-                if (year < new Date().getFullYear() || (year === new Date().getFullYear() && month < new Date().getMonth()) || (year === new Date().getFullYear() && month === new Date().getMonth() && date < new Date().getDate())) {
+                td.textContent = fecha;
+                if (anio < new Date().getFullYear() || (anio === new Date().getFullYear() && mes < new Date().getMonth()) || (anio === new Date().getFullYear() && mes === new Date().getMonth() && fecha < new Date().getDate())) {
                     td.classList.add('past-day');
                 } else {
-                    td.textContent = date;
-                    td.addEventListener('click', (function (currentDate) {
+                    td.textContent = fecha;
+                    td.addEventListener('click', (function (fechaActual) {
                         return function () {
-                            fechaseleccionada = `${year}-${month + 1}-${currentDate}`;
+                            fechaseleccionada = `${anio}/${mes + 1}/${fechaActual}`;
                             texdia = fechaseleccionada;
                             selecdia();
                         }
-                    })(date));
+                    })(fecha));
                 }
-                date++;
+                fecha++;
             }
-            row.appendChild(td);
+            fila.appendChild(td);
         }
-        table.appendChild(row);
+        tabla.appendChild(fila);
     }
 
-    calendar.appendChild(table);
+    calendario.appendChild(tabla);
 }
 
 // Función para obtener el nombre del mes
-function getMonthName(month) {
-    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-    return months[month];
+function obtenerNombreMes(mes) {
+    const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    return meses[mes];
 }
 
 // Función para ir al mes anterior
-function previousMonth() {
-    currentMonth--;
-    if (currentMonth < 0) {
-        currentMonth = 11;
-        currentYear--;
+function mesAnterior() {
+    mesActual--;
+    if (mesActual < 0) {
+        mesActual = 11;
+        anioActual--;
     }
-    showMonth(currentMonth, currentYear);
+    mostrarMes(mesActual, anioActual);
 }
 
 // Función para ir al mes siguiente
-function nextMonth() {
-    currentMonth++;
-    if (currentMonth > 11) {
-        currentMonth = 0;
-        currentYear++;
+function mesSiguiente() {
+    mesActual++;
+    if (mesActual > 11) {
+        mesActual = 0;
+        anioActual++;
     }
-    showMonth(currentMonth, currentYear);
+    mostrarMes(mesActual, anioActual);
 }
 
 // Mostrar el calendario del mes actual al cargar la página
-const today = new Date();
-showMonth(today.getMonth(), today.getFullYear());
+const hoy = new Date();
+mostrarMes(hoy.getMonth(), hoy.getFullYear());
 
 // Función que al seleccionar el día despliega el horario de servicio
 function selecdia() {
