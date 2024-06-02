@@ -246,6 +246,16 @@ ol{
     color: #fff;
 }
 
+ .hidden { display: none; }
+ .form-container { max-width: 400px; margin: auto; }
+ .form-group { margin-bottom: 15px; }
+ label { display: block; margin-bottom: 5px; }
+ input, select { width: 100%; padding: 8px; box-sizing: border-box; }
+ button { padding: 10px 20px; background-color: #cf7a64; color: #FFF; border: none; cursor: pointer; }
+ button:hover { background-color: #cf7a64; }
+ #deleteButton:hover{ background-color: #cf7a64; }
+ #deleteButton  { padding: 10px 20px; background-color: #cf7a64; color: #FFF; border: none; cursor: pointer; }
+
 .calendario {
     width: 90%;
     text-align: center;
@@ -319,9 +329,12 @@ ol{
     background-color: #fff; /* Color de fondo al pasar el ratón */
     color: #000; /* Color del texto al pasar el ratón */
 }
+#modificarcitas{
+    padding: 10px 35px;
+}
 
 .botones{
-    margin: 0 15% 0 35%;
+    margin: 0 20% 0 25%;
     background-color: #cf7a64;
         color: #fff;
         border-radius: 20px;

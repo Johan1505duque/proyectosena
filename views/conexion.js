@@ -57,6 +57,8 @@ app.post('/consulta', (req, res) => {
     });
 });
 
+
+
 app.listen(PORT, function() {
     console.log(`Servidor escuchando en el puerto http://localhost:3000`);
 });

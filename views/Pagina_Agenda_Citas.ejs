@@ -48,6 +48,10 @@
                     <i class='bx bxl-instagram'></i>
                     <p>Síguenos en nuestras redes</p>
                 </div>
+                <div id="inicio">
+                    <button id="AgendaDisponible" class="botones" type="submit" onclick="agendadisponible()">Agenda Disponible</button>
+                    <button id="modificarcitas" class="botones" type="submit" onclick="ActualizarCita()">Mas Servicios</button>
+                </div>
                 <!--Seccion de formulario de registro-->
                 <form id="formulario" action="/cita" method="post">
                     <!-- Seccion manicuristas-->
@@ -57,10 +61,10 @@
                         <option value="Aura lopez">Aura lopez</option>
                         <option value="Leidy Camargo">Leidy Camargo</option>
                         <option value="Adrina Perez">Adrina Perez</option>
-                        <option value="Adrina Perez">Camila Martinez</option>
+                        <option value="Camila Martinez">Camila Martinez</option>
                     </select><br>
                     <!-- Seccion tipos de servicios-->
-                    <label for="servicio">Tipo de Servicio</label>
+                    <label for="servicio">Tipo de Servicio</label><br>
                     <select id="servicio" name="servicio" required>
                         <option value=""></option>
                         <option value="manicureBásico" class="servicios">Manicure básico</option>
@@ -75,13 +79,50 @@
                         <option value="pedicureSpa" class="servicios">Pedicure spa</option>
                     </select><br>
                 </form>
+                <div id="form-container">
+                    <h2>Actualizar Cita</h2>
+                    <form id="updateForm">
+                        <div class="form-group">
+                            <label for="manicurista">Manicurista</label>
+                            <select id="updateManicurista" required>
+                                <option value="">Seleccione un manicurista</option>
+                                <option value="Manicurista1">Manicurista 1</option>
+                                <option value="Manicurista2">Manicurista 2</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="servicio">Servicio</label>
+                            <select id="updateServicio" required>
+                                <option value="">Seleccione un servicio</option>
+                                <option value="manicureBasico">Manicure Básico</option>
+                                <option value="pedicureBasico">Pedicure Básico</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha">Fecha</label>
+                            <input type="date" id="updateFecha" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hora">Hora</label>
+                            <select id="updateHora" required>
+                                <option value="">Seleccione una hora</option>
+                                <option value="7Am">7 Am</option>
+                                <option value="8Am">8 Am</option>
+                                <!-- Añade más opciones de hora según sea necesario -->
+                            </select>
+                        </div>
+                        <button type="submit">Actualizar Cita</button>
+                        <button type="submit" id="deleteButton" >Eliminar Cita</button>
+                    </form>
+                </div>
+                
                 <div id="mensajesconfirmar">
                     <p id="mensaje1"></p>
                     <p id="mensaje2"></p>
                     <p id="confirmar"></p>
                 </div>
                 <button id="AgendarCita" class="botones" type="submit" onclick="confirmardatos()">Agendar Cita</button>
-                <button id="retornar" class="botones"  type="submit" onclick="retornar()">Mas Servicios</button>
+                <button id="retornar" class="botones"  type="submit" onclick="retornar()">Continua nosotros</button>
             </div>
         </div>
         <script src="Pagina_Agenda_Cita.js"></script>
@@ -89,66 +130,3 @@
 
 </html>
 
-
-
-
-!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar y Eliminar Cita</title>
-    <style>
-        /* Añadir algunos estilos básicos */
-        .hidden { display: none; }
-        .form-container { max-width: 400px; margin: auto; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; }
-        input, select { width: 100%; padding: 8px; box-sizing: border-box; }
-        button { padding: 10px 20px; background-color: #007BFF; color: #FFF; border: none; cursor: pointer; }
-        button:hover { background-color: #0056b3; }
-        #deleteButton:hover{ background-color: #b30021; }
-        #deleteButton  { padding: 10px 20px; background-color: red; color: #FFF; border: none; cursor: pointer; }
-    </style>
-</head>
-<body>
-    <div class="form-container">
-        <h2>Actualizar Cita</h2>
-        <form id="updateForm">
-            <div class="form-group">
-                <label for="manicurista">Manicurista</label>
-                <select id="updateManicurista" required>
-                    <option value="">Seleccione un manicurista</option>
-                    <option value="Manicurista1">Manicurista 1</option>
-                    <option value="Manicurista2">Manicurista 2</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="servicio">Servicio</label>
-                <select id="updateServicio" required>
-                    <option value="">Seleccione un servicio</option>
-                    <option value="manicureBasico">Manicure Básico</option>
-                    <option value="pedicureBasico">Pedicure Básico</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="fecha">Fecha</label>
-                <input type="date" id="updateFecha" required>
-            </div>
-            <div class="form-group">
-                <label for="hora">Hora</label>
-                <select id="updateHora" required>
-                    <option value="">Seleccione una hora</option>
-                    <option value="7Am">7 Am</option>
-                    <option value="8Am">8 Am</option>
-                    <!-- Añade más opciones de hora según sea necesario -->
-                </select>
-            </div>
-            <button type="submit">Actualizar Cita</button>
-            <button type="submit" id="deleteButton" >Eliminar Cita</button>
-        </form>
-    </div>
-
-    <script src="actualizaroeliminar.js"></script>
-</body>
-</html>

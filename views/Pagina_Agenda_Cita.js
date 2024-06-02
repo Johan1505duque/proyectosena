@@ -1,6 +1,7 @@
 // Constantes globales
 const formulario = document.getElementById("formulario");
 const botonhoras1 = document.getElementById("bloques");
+const modificarCita = document.getElementById("form-container");
 const mensaje1 = document.getElementById("mensaje1");
 const mensaje2 = document.getElementById("mensaje2");
 const mensaje3 = document.getElementById("confirmar");
@@ -11,6 +12,8 @@ const redesSociales = document.getElementById("redes");
 const botonRetornar = document.getElementById("retornar");
 const portada = document.getElementById("encabezadoAgenda");
 const encabezado = document.getElementById("gracias");
+const inicio = document.getElementById("inicio");
+
 
 let texdia = "";
 let texhora = "";
@@ -29,6 +32,8 @@ agendarcita.style.display = "none";
 mensaje2.style.display = "none";
 mensaje3.style.display = "none";
 Calendario.style.display = "none";
+formulario.style.display = "none";
+modificarCita.style.display = "none";
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("manicurista").addEventListener("change", function () {
@@ -45,11 +50,21 @@ document.addEventListener("DOMContentLoaded", function () {
 function camposSelect() {
     if (Manicurista && Servicio) {
         confirmarfechas();
-        Calendario.style.display = "block";
         formulario.style.display = "none";
+        Calendario.style.display = "block";
         bienvenida.style.display = "none";
         redesSociales.style.display = "none";
     }
+}
+function agendadisponible(){
+    formulario.style.display = "block";
+    inicio.style.display = "none";
+}
+function ActualizarCita(){
+    modificarCita.style.display = "block";
+    inicio.style.display = "none";
+    redesSociales.style.display = "none";
+    portada.style.display = "none";
 }
 
 // Calendario
