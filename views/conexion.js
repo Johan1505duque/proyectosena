@@ -10,6 +10,7 @@ const conexion = mysql.createConnection({
     password: ""
 });
 
+
 conexion.connect(function(err) {
     if (err) {
         console.error('Error al conectar a la base de datos:', err);
@@ -23,6 +24,7 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.static('views'));
 app.use(express.urlencoded({ extended: false }));
+
 
 app.get("/", function(req, res) {
     res.render("Pagina_Agenda_Citas");
@@ -52,7 +54,31 @@ app.post('/consulta', (req, res) => {
             console.error('Error al consultar la base de datos:', error);
             res.status(500).send('Error al consultar la base de datos');
         } else {
+            console.log(results);
             res.json(results);
+        }
+    });
+});
+app.get("/citas", function(req, res) {
+    conexion.query("SELECT * FROM citas", function(error, results) {
+        if (error) {
+            console.error('Error al obtener las citas:', error);
+            res.status(500).send('Error al obtener las citas');
+        } else {
+            res.json(results);
+        }
+    });
+});
+
+app.delete("/eliminar-cita/:id", function(req, res) {
+    const id = req.params.id;
+
+    conexion.query("DELETE FROM citas WHERE id = ?", [id], function(error, results) {
+        if (error) {
+            console.error('Error al eliminar la cita:', error);
+            res.status(500).send('Error al eliminar la cita en el servidor: ' + error.message);
+        } else {
+            res.status(200).send('Cita eliminada correctamente');
         }
     });
 });

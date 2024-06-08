@@ -1,7 +1,7 @@
 // Constantes globales
 const formulario = document.getElementById("formulario");
 const botonhoras1 = document.getElementById("bloques");
-const modificarCita = document.getElementById("form-container");
+const modificarCita = document.getElementById("lista-citas");
 const mensaje1 = document.getElementById("mensaje1");
 const mensaje2 = document.getElementById("mensaje2");
 const mensaje3 = document.getElementById("confirmar");
@@ -13,7 +13,6 @@ const botonRetornar = document.getElementById("retornar");
 const portada = document.getElementById("encabezadoAgenda");
 const encabezado = document.getElementById("gracias");
 const inicio = document.getElementById("inicio");
-
 
 let texdia = "";
 let texhora = "";
@@ -211,46 +210,46 @@ function selecdia() {
             const horaConsulta = consulta.hora.trim();  // Asegurarse de que coincida con el campo de la base de datos
             horasconsultas.push(horaConsulta);
         });
-        
+
         // Remover la clase 'selected-day' de todos los elementos td (días) del calendario
         const allDays = document.querySelectorAll('#Calendario td');
         allDays.forEach(day => {
-        day.classList.remove('selected-day');
+            day.classList.remove('selected-day');
         });
 
-    // Agregar la clase 'selected-day' al día seleccionado
-    const selectedDay = document.querySelector(`#Calendario td[data-date="${fechaseleccionada}"]`);
-    if (selectedDay) {
-        selectedDay.classList.add('selected-day');
-    }
-
+        // Agregar la clase 'selected-day' al día seleccionado
+        const selectedDay = document.querySelector(`#Calendario td[data-date="${fechaseleccionada}"]`);
+        if (selectedDay) {
+            selectedDay.classList.add('selected-day');
+        }
 
         // Filtrar las horas disponibles
         const horasDisponibles = horario.filter(hora => !horasconsultas.includes(hora));
+        const horasDisponiblesFiltradas = filtrarHorasPasadas(horasDisponibles);  // Filtrar horas pasadas aquí
 
         // Limpiar el contenido anterior
         botonhoras1.innerHTML = ''; // Limpiar el contenido antes de agregar los nuevos botones
-        const tituloHorasDisponibles = document.createElement('h4');
+        const tituloHorasDisponibles = document.createElement('h3');
         tituloHorasDisponibles.textContent = 'Horas disponibles';
         botonhoras1.appendChild(tituloHorasDisponibles);
 
         // Crear botones para cada hora disponible
-        horasDisponibles.forEach(hora => {
+        horasDisponiblesFiltradas.forEach(hora => {
             const botonHora = document.createElement('button');
             botonHora.textContent = hora;
             botonHora.classList.add('botonH'); // Clase actualizada para coincidir con la clase en el CSS
-          // Event listener para el clic en una hora disponible
-botonHora.addEventListener('click', function () {
-    console.log(`Hora seleccionada: ${hora}`);
-    texhora = hora;
-    mensaje2.innerHTML = `Tu cita se llevará a cabo el día ${texdia}. A las ${texhora}.`;
-    mensaje2.style.display = "block";
-    agendarcita.style.display = "block";
-});
+            // Event listener para el clic en una hora disponible
+            botonHora.addEventListener('click', function () {
+                console.log(`Hora seleccionada: ${hora}`);
+                texhora = hora;
+                mensaje2.innerHTML = `Tu cita se llevará a cabo el día ${texdia}. A las ${texhora}.`;
+                mensaje2.style.display = "block";
+                agendarcita.style.display = "block";
+            });
             botonhoras1.appendChild(botonHora);
         });
 
-        console.log(horasDisponibles);
+        console.log(horasDisponiblesFiltradas);
     })
     .catch(error => {
         console.error('Error:', error);
@@ -269,6 +268,30 @@ function confirmarfechas() {
     mensaje1.innerHTML = `Tu cita será atendida por ${manicurista.options[manicurista.selectedIndex].text}. El servicio a realizar es ${servicio.options[servicio.selectedIndex].text}.`;
     mensaje2.innerHTML = `Tu cita se llevará a cabo el día ${texdia}. A las ${texhora}.`;
     mensaje3.innerHTML = 'Tu cita fue agendada con éxito. Recuerda llegar con 5 minutos de anterioridad.';
+}
+
+function filtrarHorasPasadas(horas) {
+    const ahora = new Date();
+    const horaActual = ahora.getHours();
+    const minutosActuales = ahora.getMinutes();
+
+    return horas.filter(hora => {
+        const [horaNum, periodo] = hora.match(/\d+|\D+/g); // Separar número y AM/PM
+        let hora24 = parseInt(horaNum);
+
+        if (periodo.toLowerCase() === 'pm' && hora24 !== 12) {
+            hora24 += 12;
+        } else if (periodo.toLowerCase() === 'am' && hora24 === 12) {
+            hora24 = 0;
+        }
+
+        // Si la hora del bloque es menor o igual que la hora actual, o si son iguales y los minutos actuales son mayores o iguales, no se muestra
+        if (hora24 < horaActual || (hora24 === horaActual && minutosActuales >= 1)) {
+            return false;
+        }
+
+        return true;
+    });
 }
 
 // Función que envía datos a la base de datos
@@ -308,6 +331,154 @@ function confirmardatos() {
         alert('Error al agendar la cita. Por favor, inténtalo de nuevo más tarde.');
     });
 }
+document.addEventListener("DOMContentLoaded", function () {
+    // Al cargar la página, obtener y mostrar las citas
+    obtenerCitas();
+});
+
+function obtenerCitas() {
+    fetch("/citas", {
+        method: "GET"
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Error al obtener las citas");
+        }
+        return response.json();
+    })
+    .then(citas => {
+        // Una vez que se obtengan las citas, mostrarlas en la página
+        mostrarCitas(citas);
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        // Manejar el error si no se pueden obtener las citas
+    });
+}
+
+function mostrarCitas(citas) {
+    const listaCitas = document.getElementById("lista-citas");
+
+    // Limpiar cualquier contenido anterior en la lista de citas
+    listaCitas.innerHTML = "";
+
+    // Iterar sobre las citas y agregarlas al elemento en la página
+    citas.forEach(cita => {
+        const citaElemento = document.createElement("div");
+        citaElemento.textContent = `ID: ${cita.id}, Manicurista: ${cita.manicurista}, Servicio: ${cita.servicio}, Fecha: ${cita.fecha}, Hora: ${cita.hora}`;
+
+        listaCitas.appendChild(citaElemento);
+    });
+
+    // Limpiar cualquier contenido anterior en la lista de citas
+    listaCitas.innerHTML = "";
+
+    // Iterar sobre las citas y agregarlas al elemento en la página
+    citas.forEach(cita => {
+        const citaElemento = document.createElement("div");
+        citaElemento.textContent = `ID: ${cita.id}, Manicurista: ${cita.manicurista}, Servicio: ${cita.servicio}, Fecha: ${cita.fecha}, Hora: ${cita.hora}`;
+
+        // Crear botones para eliminar y reagendar
+        const botonEliminar = document.createElement("button");
+        botonEliminar.textContent = "Eliminar";
+        botonEliminar.addEventListener("click", function() {
+            // Lógica para eliminar la cita
+            eliminarCita(cita.id);
+        });
+
+        const botonReagendar = document.createElement("button");
+        botonReagendar.textContent = "Reagendar";
+        botonReagendar.addEventListener("click", function() {
+            // Lógica para reagendar la cita
+            reagendarCita(cita.id);
+        });
+        
+
+        // Agregar botones a la cita
+        citaElemento.appendChild(botonEliminar);
+        citaElemento.appendChild(botonReagendar);
+
+        listaCitas.appendChild(citaElemento);
+    });
+}
+
+// JavaScript para manejar eventos de clic en los botones de acción en las citas
+document.addEventListener("DOMContentLoaded", function () {
+    const citas = document.querySelectorAll(".cita"); // Obtener todas las citas
+
+    citas.forEach(cita => {
+        const botonEliminar = cita.querySelector(".eliminar");
+        const botonReagendar = cita.querySelector(".reagendar");
+
+        botonEliminar.addEventListener("click", function() {
+            const confirmacion = confirm("¿Estás seguro que deseas eliminar esta cita?");
+            if (confirmacion) {
+                const idCita = cita.dataset.id; // Obtener el ID de la cita desde el atributo data
+                eliminarCita(idCita);
+            }
+        });
+
+        botonReagendar.addEventListener("click", function() {
+            const idCita = cita.dataset.id; // Obtener el ID de la cita desde el atributo data
+            mostrarFormularioReagendar(idCita);
+        });
+    });
+});
+
+function eliminarCita(id) {
+    // Confirmar si el usuario realmente desea eliminar la cita
+    if (confirm("¿Estás seguro de que quieres eliminar esta cita?")) {
+        // Enviar una solicitud al servidor para eliminar la cita con el ID proporcionado
+        fetch(`/eliminar-cita/${id}`, {
+            method: "DELETE"
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("No se pudo eliminar la cita. Error del servidor: " + response.statusText);
+            }
+            // Si la solicitud se procesa correctamente, actualizar la lista de citas en la página
+            obtenerCitas(); // Vuelve a cargar las citas después de eliminar una
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            // Manejar el error si no se puede eliminar la cita
+            alert("Error al eliminar la cita. Detalles del error: " + error.message);
+        });
+    }
+}
+// Event listener para el botón "Reagendar" en cada cita
+botonReagendar.addEventListener("click", function() {
+    const idCita = cita.dataset.id; // Obtener el ID de la cita desde el atributo data
+    mostrarFormularioReagendar(idCita);
+});
+
+// Función para actualizar la cita en la base de datos
+function actualizarCita(idCita, nuevaFecha, nuevaHora) {
+    fetch(`/actualizar-cita/${idCita}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nuevaFecha: nuevaFecha,
+            nuevaHora: nuevaHora
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Error al actualizar la cita");
+        }
+        // Si la cita se actualiza correctamente, puedes mostrar un mensaje de éxito o actualizar la lista de citas en la página
+        obtenerCitas(); // Vuelve a cargar las citas después de actualizar una
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        // Manejar el error si no se puede actualizar la cita
+        alert("Error al actualizar la cita. Por favor, inténtalo de nuevo más tarde.");
+    });
+}
+
+
 
 // Función que recarga la página para agendar una nueva cita
 function retornar() {
