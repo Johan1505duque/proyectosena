@@ -362,16 +362,50 @@ function mostrarCitas(citas) {
     // Limpiar cualquier contenido anterior en la lista de citas
     listaCitas.innerHTML = "";
 
-    // Iterar sobre las citas y agregarlas al elemento en la página
-    citas.forEach(cita => {
-        const citaElemento = document.createElement("div");
-        citaElemento.textContent = `ID: ${cita.id}, Manicurista: ${cita.manicurista}, Servicio: ${cita.servicio}, Fecha: ${cita.fecha}, Hora: ${cita.hora}`;
-
-        listaCitas.appendChild(citaElemento);
-    });
+ 
+   
 
     // Limpiar cualquier contenido anterior en la lista de citas
     listaCitas.innerHTML = "";
+
+    // Crear la tabla y sus encabezados
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const tbody = document.createElement("tbody");
+
+    thead.innerHTML = `
+        <tr>
+            <th>ID</th>
+            <th>Manicurista</th>
+            <th>Servicio</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Acciones</th>
+        </tr>
+    `;
+
+    // Iterar sobre las citas y agregarlas a la tabla
+    citas.forEach(cita => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${cita.id}</td>
+            <td>${cita.manicurista}</td>
+            <td>${cita.servicio}</td>
+            <td>${cita.fecha}</td>
+            <td>${cita.hora}</td>
+            <td>
+                <button class="eliminar" onclick="eliminarCita(${cita.id})">Eliminar</button>
+                <button class="reagendar" onclick="mostrarFormularioReagendar(${cita.id}, '${cita.manicurista}', '${cita.fecha}', '${cita.hora}', '${cita.servicio}')">Reagendar</button>
+            </td>
+        `;
+
+        tbody.appendChild(tr);
+    });
+
+    table.appendChild(thead);
+    table.appendChild(tbody);
+    listaCitas.appendChild(table);
 
     // Iterar sobre las citas y agregarlas al elemento en la página
     citas.forEach(cita => {
@@ -390,7 +424,7 @@ function mostrarCitas(citas) {
         botonReagendar.textContent = "Reagendar";
         botonReagendar.addEventListener("click", function() {
             // Lógica para reagendar la cita
-            reagendarCita(cita.id);
+            actualizarCita(cita.id);
         });
         
 
