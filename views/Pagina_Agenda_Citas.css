@@ -256,54 +256,8 @@ ol{
  #deleteButton:hover{ background-color: #cf7a64; }
  #deleteButton  { padding: 10px 20px; background-color: #cf7a64; color: #FFF; border: none; cursor: pointer; }
 
-/* Estilo para el contenedor de la tabla */
-.table-container {
-    width: 80%;
-    margin: 20px auto;
-    overflow-x: auto;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilo para la tabla */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table th, table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-table th {
-    background-color: #f4f4f4;
-}
-
-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-/* Estilo para los botones */
-button {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    opacity: 0.8;
-}
-
-button.eliminar {
-    background-color: #e74c3c;
-    color: white;
-}
-.calendario {
-    width: 90%;
+ .calendario {
+     width: 90%;
     text-align: center;
     margin: 10px 25px 0px 25px;
     cursor: pointer;
@@ -338,6 +292,66 @@ button.eliminar {
     color:#fff;
     border-radius: 20px;
   }
+     /* Estilo para el contenedor de la tabla */
+     .table-container {
+        width: 50%;
+         margin: 20px auto;
+         overflow-x: auto;
+         border: 1px solid #ddd;
+         border-radius: 5px;
+         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+     }
+     
+     /* Estilo para la tabla */
+     table {
+         width: 100%;
+         border-collapse: collapse;
+     }
+     
+     table th, 
+     table td {
+         padding: 5px 7px;
+         border: 1px solid #ddd;
+         text-align: left;
+     }
+     
+     table th {
+         background-color:#e7b2a4;
+     }
+     
+     table tr:nth-child(even) {
+        background-color: #cf7a64;
+    }
+     
+     /* Estilo para los botones */
+     button {
+         padding: 8px 12px;
+         border: none;
+         border-radius: 4px;
+         cursor: pointer;
+     }
+     
+     button:hover {
+         opacity: 0.8;
+     }
+     
+     button.eliminar {
+         background-color: #e74c3c;
+         color: white;
+     }
+     button.reagendar {
+        background-color:#5b56ea;
+        color: white;
+    }
+    #formulario-reagendar {
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 20px;
+        width: 300px;
+        margin: 20px auto;
+        display: none;
+    }
+    
   
   .past-day {
     color: #ccc;

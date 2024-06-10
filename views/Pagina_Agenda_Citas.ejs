@@ -82,45 +82,31 @@
                 <div id="lista-citas">
                     <!-- Aquí se mostrarán las citas -->
                 </div>
+                <div id="formulario-reagendar" style="display:none;">
+                    <h3>Reagendar Cita</h3>
+                    <form id="form-reagendar-cita">
+                        <label for="manicurista-reagendar">Manicurista:</label>
+                        <select id="manicurista-reagendar">
+                            <!-- Opciones de manicuristas -->
+                        </select><br><br>
                 
-               <!--<div id="form-container">
-                    <h2>Actualizar Cita</h2>
-                    
-                    <form id="updateForm" action="/consulta" method="post">
-                        <div class="form-group">
-                            <label for="manicurista">Manicurista</label>
-                            <select id="updateManicurista" required>
-                                <option value="">Seleccione un manicurista</option>
-                                <option value="Manicurista1">Manicurista 1</option>
-                                <option value="Manicurista2">Manicurista 2</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="servicio">Servicio</label>
-                            <select id="updateServicio" required>
-                                <option value="">Seleccione un servicio</option>
-                                <option value="manicureBasico">Manicure Básico</option>
-                                <option value="pedicureBasico">Pedicure Básico</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="fecha">Fecha</label>
-                            <input type="date" id="updateFecha" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="hora">Hora</label>
-                            <select id="updateHora" required>
-                                <option value="">Seleccione una hora</option>
-                                <option value="7Am">7 Am</option>
-                                <option value="8Am">8 Am</option>
-                                <!-- Añade más opciones de hora según sea necesario 
-                            </select>
-                        </div>
-                        
-                        <button type="submit">Actualizar Cita</button>
-                        <button type="submit" id="deleteButton" >Eliminar Cita</button>
+                        <label for="servicio-reagendar">Servicio:</label>
+                        <select id="servicio-reagendar">
+                            <!-- Opciones de servicios -->
+                        </select><br><br>
+                
+                        <label for="fecha-reagendar">Fecha:</label>
+                        <input type="date" id="fecha-reagendar"><br><br>
+                
+                        <label for="hora-reagendar">Hora:</label>
+                        <select id="hora-reagendar">
+                            <!-- Opciones de horas -->
+                        </select><br><br>
+                
+                        <button type="button" id="guardar-reagendar">Guardar</button>
+                        <button type="button" id="cancelar-reagendar">Cancelar</button>
                     </form>
-                </div>-->
+                </div>
                 
                 <div id="mensajesconfirmar">
                     <p id="mensaje1"></p>

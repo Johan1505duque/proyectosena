@@ -83,6 +83,22 @@ app.delete("/eliminar-cita/:id", function(req, res) {
     });
 });
 
+app.put('/actualizar-cita/:id', (req, res) => {
+    const idCita = req.params.id;
+    const { manicurista, servicio, fecha, hora } = req.body;
+
+    // Construir la consulta SQL para actualizar la cita
+    const query = 'UPDATE citas SET manicurista = ?, servicio = ?, fecha = ?, hora = ? WHERE id = ?';
+    conexion.query(query, [manicurista, servicio, fecha, hora, idCita], (error, results) => {
+        if (error) {
+            console.error('Error al actualizar la cita:', error);
+            res.status(500).json({ success: false, message: 'Error al actualizar la cita' });
+        } else {
+            console.log('Cita actualizada correctamente');
+            res.json({ success: true, message: 'Cita actualizada correctamente' });
+        }
+    });
+});
 
 
 app.listen(PORT, function() {
