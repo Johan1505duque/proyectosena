@@ -367,11 +367,13 @@ ol{
     button.eliminar {
         background-color: #bd3f1f;; /* Rojo claro, amigable pero indicando eliminación */
         color: white;
+        margin: 4px;
     }
     
     button.reagendar {
         background-color: #e36e51;; /* Verde amigable que indica acción positiva */
         color: white;
+        margin: 4px;
     }
     
     button.eliminar:hover, button.reagendar:hover {
