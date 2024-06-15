@@ -381,9 +381,6 @@ function mostrarCitas(citas) {
     // Limpiar cualquier contenido anterior en la lista de citas
     listaCitas.innerHTML = "";
 
-    // Limpiar cualquier contenido anterior en la lista de citas
-    listaCitas.innerHTML = "";
-
     // Crear la tabla y sus encabezados
     const table = document.createElement("table");
     const thead = document.createElement("thead");
@@ -403,10 +400,20 @@ function mostrarCitas(citas) {
     citas.forEach(cita => {
         const tr = document.createElement("tr");
 
+        // Convertir la fecha a un objeto Date
+        const fechaObj = new Date(cita.fecha);
+
+        // Formatear la fecha para mostrar solo año, mes y día
+        const fechaFormateada = fechaObj.toLocaleDateString('es-ES', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+        });
+
         tr.innerHTML = `
             <td>${cita.manicurista}</td>
             <td>${cita.servicio}</td>
-            <td>${cita.fecha}</td>
+            <td>${fechaFormateada}</td>
             <td>${cita.hora}</td>
             <td>
                 <button class="eliminar" onclick="eliminarCita(${cita.id})">Eliminar</button>
@@ -434,12 +441,13 @@ function mostrarCitas(citas) {
             // Lógica para eliminar la cita
             eliminarCita(cita.id);
         });
+
+        const botonReagendar = document.createElement("button");
         botonReagendar.textContent = "Reagendar";
         botonReagendar.addEventListener("click", function() {
             // Lógica para reagendar la cita
             actualizarCita(cita.id);
         });
-        
 
         // Agregar botones a la cita
         citaElemento.appendChild(botonEliminar);
@@ -510,6 +518,18 @@ function mostrarFormularioReagendar(idCita, manicuristaActual, fechaActual, hora
     // Rellenar los campos del formulario con los datos actuales de la cita
     document.getElementById("manicurista-reagendar").value = manicuristaActual;
     document.getElementById("servicio-reagendar").value = servicioActual;
+
+    // Convertir la fecha actual a un objeto Date
+    const fechaHoy = new Date();
+    // Obtener el año, mes y día de la fecha actual
+    const year = fechaHoy.getFullYear();
+    const month = (fechaHoy.getMonth() + 1).toString().padStart(2, '0');
+    const day = fechaHoy.getDate().toString().padStart(2, '0');
+    // Formatear la fecha para que sea compatible con el atributo 'min' del campo de fecha
+    const fechaMinima = `${year}-${month}-${day}`;
+    // Establecer la fecha mínima en el campo de fecha del formulario
+    document.getElementById("fecha-reagendar").setAttribute("min", fechaMinima);
+
     document.getElementById("fecha-reagendar").value = fechaActual.split(" ")[0]; // Ajustar formato de fecha si es necesario
     document.getElementById("hora-reagendar").value = horaActual;
 
@@ -523,7 +543,7 @@ function mostrarFormularioReagendar(idCita, manicuristaActual, fechaActual, hora
         actualizarCita(idCitaAReagendar, nuevaManicurista, nuevoServicio, nuevaFecha, nuevaHora);
     });
 
-    // Event listener para el botón CancelarSñ
+    // Event listener para el botón Cancelar
     document.getElementById("cancelar-reagendar").addEventListener("click", function() {
         formularioReagendar.style.display = "none";
     });

@@ -181,7 +181,7 @@ body{
     justify-content: center;
     margin-top: 0%;
 }
-#resistrarse{
+#resistrarse,#enlace{
     background-color: #cf7a64;
     color: #fff;
     border-radius: 20px;
