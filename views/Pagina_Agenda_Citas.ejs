@@ -50,7 +50,7 @@
                 </div>
                 <div id="inicio">
                     <button id="AgendaDisponible" class="botones" type="submit" onclick="agendadisponible()">Agenda Disponible</button>
-                    <button id="modificarcitas" class="botones" type="submit" onclick="ActualizarCita()">Mas Servicios</button>
+                    <button id="modificarcitas" class="botones" type="submit" onclick="ActualizarCita()">¿Deseas cancelar o reagendar una cita? </button>
                 </div>
                 <!--Seccion de formulario de registro-->
                 <form id="formulario" action="/cita" method="post">
@@ -79,7 +79,7 @@
                         <option value="pedicureSpa" class="servicios">Pedicure spa</option>
                     </select><br>
                 </form>
-                <div id="lista-citas">
+                <div id="lista-citas" style="overflow: scroll; height: 25rem;">
                     <!-- Aquí se mostrarán las citas -->
                 </div>
                 <div id="formulario-reagendar" style="display:none;">

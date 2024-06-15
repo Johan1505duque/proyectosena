@@ -391,7 +391,6 @@ function mostrarCitas(citas) {
 
     thead.innerHTML = `
         <tr>
-            <th>ID</th>
             <th>Manicurista</th>
             <th>Servicio</th>
             <th>Fecha</th>
@@ -405,7 +404,6 @@ function mostrarCitas(citas) {
         const tr = document.createElement("tr");
 
         tr.innerHTML = `
-            <td>${cita.id}</td>
             <td>${cita.manicurista}</td>
             <td>${cita.servicio}</td>
             <td>${cita.fecha}</td>
@@ -508,7 +506,7 @@ function mostrarFormularioReagendar(idCita, manicuristaActual, fechaActual, hora
     // Mostrar el formulario de reagendar
     const formularioReagendar = document.getElementById("formulario-reagendar");
     formularioReagendar.style.display = "block";
-
+   
     // Rellenar los campos del formulario con los datos actuales de la cita
     document.getElementById("manicurista-reagendar").value = manicuristaActual;
     document.getElementById("servicio-reagendar").value = servicioActual;
@@ -525,7 +523,7 @@ function mostrarFormularioReagendar(idCita, manicuristaActual, fechaActual, hora
         actualizarCita(idCitaAReagendar, nuevaManicurista, nuevoServicio, nuevaFecha, nuevaHora);
     });
 
-    // Event listener para el botón Cancelar
+    // Event listener para el botón CancelarSñ
     document.getElementById("cancelar-reagendar").addEventListener("click", function() {
         formularioReagendar.style.display = "none";
     });
@@ -629,6 +627,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("cancelar-reagendar").onclick = function() {
             formularioReagendar.style.display = "none";
             modificarCita.style.display = "none";
+            retornar() 
         };
     }
 });

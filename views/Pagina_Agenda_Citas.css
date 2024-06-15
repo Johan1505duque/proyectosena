@@ -246,15 +246,35 @@ ol{
     color: #fff;
 }
 
- .hidden { display: none; }
- .form-container { max-width: 400px; margin: auto; }
- .form-group { margin-bottom: 15px; }
- label { display: block; margin-bottom: 5px; }
- input, select { width: 100%; padding: 8px; box-sizing: border-box; }
- button { padding: 10px 20px; background-color: #cf7a64; color: #FFF; border: none; cursor: pointer; }
- button:hover { background-color: #cf7a64; }
- #deleteButton:hover{ background-color: #cf7a64; }
- #deleteButton  { padding: 10px 20px; background-color: #cf7a64; color: #FFF; border: none; cursor: pointer; }
+    .hidden
+    { 
+    display: none; 
+    }
+
+ .form-container { 
+    max-width: 400px; margin: auto;
+ }
+ .form-group { 
+    margin-bottom: 15px;
+ }
+ label { 
+    display: block; margin-bottom: 5px; 
+}
+ input, select { 
+    width: 100%; padding: 8px; box-sizing: border-box;
+ }
+ button {
+     padding: 10px 20px; background-color: #cf7a64; color: #FFF; border: none; cursor: pointer;
+     }
+ button:hover { 
+    background-color: #cf7a64; 
+}
+ #deleteButton:hover{
+     background-color: #cf7a64; 
+    }
+ #deleteButton  {
+     padding: 10px 20px; background-color: #cf7a64; color: #FFF; border: none; cursor: pointer; 
+    }
 
  .calendario {
      width: 90%;
@@ -335,13 +355,27 @@ ol{
          opacity: 0.8;
      }
      
-     button.eliminar {
-         background-color: #e74c3c;
-         color: white;
-     }
-     button.reagendar {
-        background-color:#5b56ea;
+     button.eliminar, button.reagendar {
+        padding: 10px 20px; /* Aumenta el tamaño horizontal para mejor visibilidad */
+        border: none;
+        border-radius: 5px; /* Bordes redondeados para un look más amigable */
+        font-size: 16px; /* Tamaño de fuente uniforme */
+        cursor: pointer; /* Cambia el cursor a pointer al pasar sobre el botón */
+        width: 120px; /* Anchura fija para ambos botones */
+    }
+    
+    button.eliminar {
+        background-color: #bd3f1f;; /* Rojo claro, amigable pero indicando eliminación */
         color: white;
+    }
+    
+    button.reagendar {
+        background-color: #e36e51;; /* Verde amigable que indica acción positiva */
+        color: white;
+    }
+    
+    button.eliminar:hover, button.reagendar:hover {
+        opacity: 0.8; /* Efecto hover para ambos botones */
     }
     #formulario-reagendar {
         background-color: white;
