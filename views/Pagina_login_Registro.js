@@ -77,5 +77,43 @@
         let mensajeValidacion=document.getElementById("validacion");
         mensajeValidacion.innerHTML=mensaje
     }
+
+    function confirmarinicio(event) {
+    /*    event.preventDefault();  // Previene el envío del formulario
+
+        const email = document.getElementById('correo-inicio').value;
+        const password = document.getElementById('contraseña-inicio').value;
+
+        if (!email || !password) {
+            alert('Por favor, complete ambos campos.');
+            return;
+        }
+
+        fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: email, password: password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = 'Pagina_Agenda_Citas.html';
+            } else {
+                alert('Correo o contraseña incorrectos.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Ocurrió un error al intentar iniciar sesión. Por favor, intente de nuevo más tarde.');
+        });*/
+        alert("el correo o contraseña no son correctos por favor verifique sus cre e intentelo de nuevo ")
+    }
+
+    // Añadimos el event listener al botón después de cargar el DOM
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('enlace').addEventListener('click', confirmarinicio);
+    });
     
     window.addEventListener("load", iniciarformulario)

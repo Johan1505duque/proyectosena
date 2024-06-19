@@ -39,6 +39,24 @@ app.post("/validar", function(req, res) {
         });
 });
 
+app.post("/api/login", (req, res) => {
+    const { email, password } = req.body;
+    console.log(`Intentando iniciar sesión con el correo: ${email}`);
+    const query = "SELECT * FROM usuarios WHERE email = ? AND password = ?";
+    conexion.query(query, [email, password], (error, results) => {
+        if (error) {
+            console.error('Error en la consulta de login:', error);
+            res.status(500).send('Error en la consulta de login');
+        } else {
+            if (results.length > 0) {
+                res.json({ success: true });
+            } else {
+                res.json({ success: false });
+            }
+        }
+    });
+});
+
 app.listen(3000,function(){
     console.log("servidor creado http://localhost:3000")
 })
