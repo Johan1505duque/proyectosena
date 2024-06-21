@@ -63,7 +63,7 @@ input,label{
 
 
 p, #mensajesconfirmar{
-    margin:  30px 30px 30px 30px;
+    margin:  30px 0px 30px 0px;
     font-size: 1rem;
     color: #333;
 }
@@ -93,12 +93,30 @@ p, #mensajesconfirmar{
     background-color: #e7b2a4;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    height: 87%;
 }
 
+.portadaInicio{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 70%; 
+    margin: 15%;
+}
+
+#lista-citas {
+    top: 0;
+    left: 0;
+    width: 46rem;
+    height: 20rem;
+    overflow-y: scroll; /* Permitir el desplazamiento vertical */
+}
 
 .iconos{
     margin: 15px 0;
     font-size: x-large;
+    display: flex;
+    justify-content: center;
 }
 
 .iconos i {
@@ -246,184 +264,200 @@ ol{
     color: #fff;
 }
 
-    .hidden
-    { 
+.hidden
+{ 
     display: none; 
+}
+
+.form-container { 
+    max-width: 400px;
+    margin: auto;
+}
+.form-group { 
+    margin-bottom: 15px;
+}
+label { 
+    display: block; 
+    margin-bottom: 5px; 
+}
+input, select { 
+    width: 100%; 
+    padding: 8px; 
+    box-sizing: border-box;
+}
+button {
+    padding: 10px 20px; 
+    background-color: #cf7a64; 
+    color: #FFF; 
+    border: none; 
+    cursor: pointer;
     }
 
- .form-container { 
-    max-width: 400px; margin: auto;
- }
- .form-group { 
-    margin-bottom: 15px;
- }
- label { 
-    display: block; margin-bottom: 5px; 
-}
- input, select { 
-    width: 100%; padding: 8px; box-sizing: border-box;
- }
- button {
-     padding: 10px 20px; background-color: #cf7a64; color: #FFF; border: none; cursor: pointer;
-     }
- button:hover { 
+button:hover { 
     background-color: #cf7a64; 
 }
- #deleteButton:hover{
-     background-color: #cf7a64; 
-    }
- #deleteButton  {
-     padding: 10px 20px; background-color: #cf7a64; color: #FFF; border: none; cursor: pointer; 
-    }
 
- .calendario {
-     width: 90%;
+#deleteButton:hover{
+    background-color: #cf7a64; 
+}
+
+#deleteButton  {
+    padding: 10px 20px; 
+    background-color: #cf7a64;
+    color:#FFF; 
+    border: none; 
+    cursor: pointer; 
+}
+
+.calendario {
+    width: 90%;
     text-align: center;
     margin: 10px 25px 0px 25px;
     cursor: pointer;
 }
 
-  .pasarmeses{
+.pasarmeses{
     display: flex;
     justify-content: space-around;
-  }
-  
-  .month-year {
+}
+
+.month-year {
     font-size: 20px;
     margin-bottom: 10px;
-  }
-  
-  .month-table {
+}
+
+.month-table {
     width: 100%;
     border-collapse: collapse;
-  }
-  
-  .month-table th, .month-table td {
+}
+
+.month-table th, .month-table td {
     padding: 10px;
     border: 1px solid #ddd;
     border: none;
-  }
-  
-  .month-table th {
+}
+
+
+.month-table th {
     background-color: #f2f2f2;
-  }
-  .month-table td:hover{
+}
+
+.month-table td:hover{
     background-color: #e7b2a4;
     color:#fff;
     border-radius: 20px;
-  }
-     /* Estilo para el contenedor de la tabla */
-     .table-container {
-        width: 50%;
-         margin: 20px auto;
-         overflow-x: auto;
-         border: 1px solid #ddd;
-         border-radius: 5px;
-         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-     }
-     
-     /* Estilo para la tabla */
-     table {
-         width: 100%;
-         border-collapse: collapse;
-     }
-     
-     table th, 
-     table td {
-         padding: 5px 7px;
-         border: 1px solid #ddd;
-         text-align: left;
-     }
-     
-     table th {
-         background-color:#e7b2a4;
-     }
-     
-     table tr:nth-child(even) {
-        background-color: #cf7a64;
-    }
-     
-     /* Estilo para los botones */
-     button {
-         padding: 8px 12px;
-         border: none;
-         border-radius: 4px;
-         cursor: pointer;
-     }
-     
-     button:hover {
-         opacity: 0.8;
-     }
-     
-     button.eliminar, button.reagendar {
-        padding: 10px 20px; /* Aumenta el tamaño horizontal para mejor visibilidad */
-        border: none;
-        border-radius: 5px; /* Bordes redondeados para un look más amigable */
-        font-size: 16px; /* Tamaño de fuente uniforme */
-        cursor: pointer; /* Cambia el cursor a pointer al pasar sobre el botón */
-        width: 120px; /* Anchura fija para ambos botones */
-    }
+}
+
+.table-container {
+    width: 50%;
+    margin: 20px auto;
+    overflow-x: auto;
+    border: 1px solid #ddd;
+        
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, 
+table td {
+    padding: 5px 7px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color:#e7b2a4;
+}
+
+table tr:nth-child(even) {
+    background-color: #cf7a64;
+}
+
+button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+button.eliminar, button.reagendar {
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    width: 120px; 
+}
     
-    button.eliminar {
-        background-color: #bd3f1f;; /* Rojo claro, amigable pero indicando eliminación */
-        color: white;
-        margin: 4px;
-    }
+button.eliminar {
+    background-color: #bd3f1f;
+    color: white;
+    margin: 4px;
+}
     
-    button.reagendar {
-        background-color: #e36e51;; /* Verde amigable que indica acción positiva */
-        color: white;
-        margin: 4px;
-    }
+button.reagendar {
+    background-color: #e36e51;
+    color: white;
+    margin: 4px;
+}
     
-    button.eliminar:hover, button.reagendar:hover {
-        opacity: 0.8; /* Efecto hover para ambos botones */
-    }
-    #formulario-reagendar {
-        background-color: white;
-        border: 1px solid #ccc;
-        padding: 20px;
-        width: 300px;
-        margin: 20px auto;
-        display: none;
-    }
-    
-  
-  .past-day {
+button.eliminar:hover,
+button.reagendar:hover {
+    opacity: 0.8; 
+}
+
+#formulario-reagendar {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px;
+    display: none;
+}
+
+.past-day {
     color: #ccc;
     cursor: not-allowed;
-  }
+}
 
-  .selected-day {
+.selected-day {
     background-color: #ffffcc; 
 }
 
-  .button-container {
+.button-container {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-  }
-  
-  .button-container button {
+}
+
+.button-container button {
     padding: 5px 10px;
     font-size: 14px;
-  }
+}
 
-  .botonH {
+.botonH {
     margin: 5px;
     padding: 8px;
-    background-color: #cf7a64; /* Color de fondo */
-    color: #fff; /* Color del texto */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Borde redondeado */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    box-shadow: 0 5px 7px rgba(0, 0, 0, .1); /* Sombra */
-    transition: background-color .3s ease; /* Transición suave para el cambio de color de fondo */
+    background-color: #cf7a64; 
+    color: #fff; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer; 
+    box-shadow: 0 5px 7px rgba(0, 0, 0, .1); 
+    transition: background-color .3s ease; 
 }
 
 .botonH:hover {
-    background-color: #fff; /* Color de fondo al pasar el ratón */
-    color: #000; /* Color del texto al pasar el ratón */
+    background-color: #fff; 
+    color: #000; 
 }
 #modificarcitas{
     padding: 10px 35px;
@@ -432,16 +466,15 @@ ol{
 .botones{
     margin: 0 20% 0 25%;
     background-color: #cf7a64;
-        color: #fff;
-        border-radius: 20px;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        margin-top: 10px;
-        box-shadow: 0 5px 7px rgba(0, 0, 0, .1);
-        align-items: center;
+    color: #fff;
+    border-radius: 20px;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 5px 7px rgba(0, 0, 0, .1);
+    align-items: center;
 }
-
 
 #gracias{
     width: 70%; 

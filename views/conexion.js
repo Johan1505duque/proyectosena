@@ -100,6 +100,24 @@ app.put('/actualizar-cita/:id', (req, res) => {
     });
 });
 
+app.get('/horas-disponibles', (req, res) => {
+    const { fecha, manicurista, servicio } = req.query;
+
+    const query = 'SELECT hora FROM citas WHERE fecha = ? AND manicurista = ? AND servicio = ?';
+    conexion.query(query, [fecha, manicurista, servicio], (error, results) => {
+        if (error) {
+            console.error('Error al consultar las horas disponibles:', error);
+            res.status(500).send('Error al consultar las horas disponibles');
+        } else {
+            const horasOcupadas = results.map(result => result.hora);
+            const todasLasHoras = ['7Am', '8Am', '9Am', '10Am', '11Am', '12Am', '2Pm', '3Pm', '4Pm', '5Pm', '6Pm', '7Pm'];
+            const horasDisponibles = todasLasHoras.filter(hora => !horasOcupadas.includes(hora));
+
+            res.json({ success: true, horasDisponibles });
+        }
+    });
+});
+
 
 app.listen(PORT, function() {
     console.log(`Servidor escuchando en el puerto http://localhost:3000`);

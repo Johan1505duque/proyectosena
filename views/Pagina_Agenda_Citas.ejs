@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="./Pagina_Agenda_Citas.css">
     <title>Agenda tu cita</title>
@@ -28,29 +28,56 @@
                 <img src="./Fondo/images.jpeg" alt="pedicure">
             </div>
             <!--<div id="calendar">
-
+                
             </div>-->
             <div id="Calendario" class="calendario"> 
-            
+                
                 <!--Seccion horarios diponibles-->
             </div>
             <div id="bloques">
-            
+                
             </div>
         </div>
         <!--Seccion iconos de redes sociales-->
         <div class="formas-informacion">
-            <div class="formas-informacion-childs">
-                <h2 id="encabezadoAgenda">Agenda Tu Cita</h2>
-                <div id="redes" class="iconos">
-                    <i class='bx bxl-whatsapp'></i>
-                    <i class='bx bxl-tiktok'></i>
-                    <i class='bx bxl-instagram'></i>
-                    <p>Síguenos en nuestras redes</p>
+            <div class="portadaInicio">
+                <div class="formas-informacion-childs">
+                    <h2 id="encabezadoAgenda">Agenda Tu Cita</h2>
+                    <div id="redes" class="iconos">
+                        <i class='bx bxl-whatsapp'></i>
+                        <i class='bx bxl-tiktok'></i>
+                        <i class='bx bxl-instagram'></i>
+                    </div>
+                    <div id="inicio">
+                        <p class="">Síguenos en nuestras redes</p>
+                        <button id="AgendaDisponible" class="botones" type="submit" onclick="agendadisponible()">Agenda Disponible</button>
+                        <button id="modificarcitas" class="botones" type="submit" onclick="ActualizarCita()">¿Deseas cancelar o reagendar una cita? </button>
+                    </div>
                 </div>
-                <div id="inicio">
-                    <button id="AgendaDisponible" class="botones" type="submit" onclick="agendadisponible()">Agenda Disponible</button>
-                    <button id="modificarcitas" class="botones" type="submit" onclick="ActualizarCita()">¿Deseas cancelar o reagendar una cita? </button>
+                <div id="formulario-reagendar" style="display:none;">
+                    <h3>Reagendar Cita</h3>
+                    <form id="form-reagendar-cita">
+                        <label for="manicurista-reagendar">Manicurista:</label>
+                        <select id="manicurista-reagendar">
+                            <!-- Opciones de manicuristas -->
+                        </select><br><br>
+                        
+                        <label for="servicio-reagendar">Servicio:</label>
+                        <select id="servicio-reagendar">
+                            <!-- Opciones de servicios -->
+                        </select><br><br>
+                        
+                        <label for="fecha-reagendar">Fecha:</label>
+                        <input type="date" id="fecha-reagendar"><br><br>
+                        
+                        <label for="hora-reagendar">Hora:</label>
+                        <select id="hora-reagendar">
+                            <!-- Opciones de horas -->
+                        </select><br><br>
+                        
+                        <button type="button" id="guardar-reagendar">Guardar</button>
+                        <button type="button" id="cancelar-reagendar">Cancelar</button>
+                    </form>
                 </div>
                 <!--Seccion de formulario de registro-->
                 <form id="formulario" action="/cita" method="post">
@@ -79,42 +106,22 @@
                         <option value="pedicureSpa" class="servicios">Pedicure spa</option>
                     </select><br>
                 </form>
-                <div id="lista-citas" style="overflow: scroll; height: 25rem;">
+                <div id="lista-citas" >
                     <!-- Aquí se mostrarán las citas -->
                 </div>
-                <div id="formulario-reagendar" style="display:none;">
-                    <h3>Reagendar Cita</h3>
-                    <form id="form-reagendar-cita">
-                        <label for="manicurista-reagendar">Manicurista:</label>
-                        <select id="manicurista-reagendar">
-                            <!-- Opciones de manicuristas -->
-                        </select><br><br>
+                <p id="confirmar"></p>
                 
-                        <label for="servicio-reagendar">Servicio:</label>
-                        <select id="servicio-reagendar">
-                            <!-- Opciones de servicios -->
-                        </select><br><br>
-                
-                        <label for="fecha-reagendar">Fecha:</label>
-                        <input type="date" id="fecha-reagendar"><br><br>
-                
-                        <label for="hora-reagendar">Hora:</label>
-                        <select id="hora-reagendar">
-                            <!-- Opciones de horas -->
-                        </select><br><br>
-                
-                        <button type="button" id="guardar-reagendar">Guardar</button>
-                        <button type="button" id="cancelar-reagendar">Cancelar</button>
-                    </form>
-                </div>
-                
+                <button id="retornar" class="botones"  type="submit" onclick="retornar()">Continua con nosotros</button>
+
+                <p id="mensaje4">¡Descubre más servicios y sigue disfrutando con nosotros! Presiona el botón Más Servicios ahora.</p>
+
+                <button id="retornarAgenda" class="botones"  type="submit" onclick="retornarAgenda()">Mas servicios</button>
+
                 <div id="mensajesconfirmar">
                     <p id="mensaje1"></p>
                     <p id="mensaje2"></p>
-                    <p id="confirmar"></p>
                 </div>
                 <button id="AgendarCita" class="botones" type="submit" onclick="confirmardatos()">Agendar Cita</button>
-                <button id="retornar" class="botones"  type="submit" onclick="retornar()">Continua nosotros</button>
             </div>
         </div>
         <script src="Pagina_Agenda_Cita.js"></script>

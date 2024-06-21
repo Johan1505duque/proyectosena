@@ -5,15 +5,19 @@ const modificarCita = document.getElementById("lista-citas");
 const mensaje1 = document.getElementById("mensaje1");
 const mensaje2 = document.getElementById("mensaje2");
 const mensaje3 = document.getElementById("confirmar");
+const mensaje4 = document.getElementById("mensaje4");
 const agendarcita = document.getElementById("AgendarCita");
 const Calendario = document.getElementById("Calendario");
 const bienvenida = document.getElementById("logo");
 const redesSociales = document.getElementById("redes");
 const botonRetornar = document.getElementById("retornar");
+const botonRetornarAgenda = document.getElementById("retornarAgenda");
 const portada = document.getElementById("encabezadoAgenda");
 const encabezado = document.getElementById("gracias");
 const inicio = document.getElementById("inicio");
 const botonReagendar = document.createElement("button");
+const contenedorPadre = document.createElement("formas-informacion");
+
 
 let texdia = "";
 let texhora = "";
@@ -27,10 +31,12 @@ let horario = ['7Am', '8Am', '9Am', '10Am', '11Am', '12Am', '2Pm', '3Pm', '4Pm',
 let horario2 = ['7Am', '9Am', '11Am', '2Pm', '4Pm', '6Pm'];
 
 encabezado.style.display = "none";
+botonRetornarAgenda.style.display = "none";
 botonRetornar.style.display = "none";
 agendarcita.style.display = "none";
 mensaje2.style.display = "none";
 mensaje3.style.display = "none";
+mensaje4.style.display = "none";
 Calendario.style.display = "none";
 formulario.style.display = "none";
 modificarCita.style.display = "none";
@@ -339,6 +345,7 @@ function confirmardatos() {
         console.log('Respuesta recibida:', data); // Imprimir la respuesta recibida
         if (data.includes('Datos insertados correctamente')) {
             console.log('Cita registrada correctamente');
+            botonRetornar.style.display = "block";
             retornar();
         } else {
             throw new Error('Error al agendar la cita: ' + data); // Lanzar un error con la respuesta recibida
@@ -460,7 +467,7 @@ function mostrarCitas(citas) {
 // JavaScript para manejar eventos de clic en los botones de acción en las citas
 document.addEventListener("DOMContentLoaded", function () {
     const citas = document.querySelectorAll(".cita"); // Obtener todas las citas
-
+    contenedorPadre.style.display = "none";
     citas.forEach(cita => {
         const botonEliminar = cita.querySelector(".eliminar");
         const botonReagendar = cita.querySelector(".reagendar");
@@ -482,6 +489,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function eliminarCita(id) {
     // Confirmar si el usuario realmente desea eliminar la cita
     if (confirm("¿Estás seguro de que quieres eliminar esta cita?")) {
+        botonRetornarAgenda.style.display="block";
         // Enviar una solicitud al servidor para eliminar la cita con el ID proporcionado
         fetch(`/eliminar-cita/${id}`, {
             method: "DELETE"
@@ -508,88 +516,9 @@ botonReagendar.addEventListener("click", function() {
 
 let idCitaAReagendar = null;
 
-function mostrarFormularioReagendar(idCita, manicuristaActual, fechaActual, horaActual, servicioActual) {
-    idCitaAReagendar = idCita;
-
-    // Mostrar el formulario de reagendar
-    const formularioReagendar = document.getElementById("formulario-reagendar");
-    formularioReagendar.style.display = "block";
-   
-    // Rellenar los campos del formulario con los datos actuales de la cita
-    document.getElementById("manicurista-reagendar").value = manicuristaActual;
-    document.getElementById("servicio-reagendar").value = servicioActual;
-
-    // Convertir la fecha actual a un objeto Date
-    const fechaHoy = new Date();
-    // Obtener el año, mes y día de la fecha actual
-    const year = fechaHoy.getFullYear();
-    const month = (fechaHoy.getMonth() + 1).toString().padStart(2, '0');
-    const day = fechaHoy.getDate().toString().padStart(2, '0');
-    // Formatear la fecha para que sea compatible con el atributo 'min' del campo de fecha
-    const fechaMinima = `${year}-${month}-${day}`;
-    // Establecer la fecha mínima en el campo de fecha del formulario
-    document.getElementById("fecha-reagendar").setAttribute("min", fechaMinima);
-
-    document.getElementById("fecha-reagendar").value = fechaActual.split(" ")[0]; // Ajustar formato de fecha si es necesario
-    document.getElementById("hora-reagendar").value = horaActual;
-
-    // Event listener para el botón Guardar
-    document.getElementById("guardar-reagendar").addEventListener("click", function() {
-        const nuevaManicurista = document.getElementById("manicurista-reagendar").value;
-        const nuevoServicio = document.getElementById("servicio-reagendar").value;
-        const nuevaFecha = document.getElementById("fecha-reagendar").value;
-        const nuevaHora = document.getElementById("hora-reagendar").value;
-
-        actualizarCita(idCitaAReagendar, nuevaManicurista, nuevoServicio, nuevaFecha, nuevaHora);
-    });
-
-    // Event listener para el botón Cancelar
-    document.getElementById("cancelar-reagendar").addEventListener("click", function() {
-        formularioReagendar.style.display = "none";
-    });
-}
-
-function actualizarCita(idCita, nuevaManicurista, nuevoServicio, nuevaFecha, nuevaHora) {
-    fetch(`/actualizar-cita/${idCita}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            manicurista: nuevaManicurista,
-            servicio: nuevoServicio,
-            fecha: nuevaFecha,
-            hora: nuevaHora
-        })
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Error al actualizar la cita");
-        }
-        return response.json(); // Suponiendo que la respuesta sea JSON
-    })
-    .then(data => {
-        if (data.success) {
-            alert("Cita actualizada exitosamente");
-            // Ocultar el formulario de reagendar
-            document.getElementById("formulario-reagendar").style.display = "none";
-            // Recargar las citas
-            obtenerCitas();
-        } else {
-            alert("Error al actualizar la cita: " + data.message);
-        }
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        alert("Error al actualizar la cita. Por favor, inténtalo de nuevo más tarde.");
-    });
-}
-// Asegúrate de tener los manicuristas, servicios y horarios llenados dinámicamente o estáticamente.
-// A continuación se muestra un ejemplo estático para simplicidad.
 document.addEventListener("DOMContentLoaded", function() {
-    const manicuristas = ["Aura lopez", "Leidy Camargo","Adrina Perez","Camila Martinez"];
-    const servicios = ["manicureBásico", "pedicureBásico", "esmaltadoPermanente","esmaltadoPermanente","manicureFrancés","pedicureFrancés","uñasAcrílicas","uñasDeGel","decoraciónDeUñas","manicureSpa","pedicureSpa"];
-    const horas = ['7Am', '8Am', '9Am', '10Am', '11Am', '12Am', '2Pm', '3Pm', '4Pm', '5Pm', '6Pm', '7Pm'];
+    const manicuristas = ["Aura lopez", "Leidy Camargo", "Adrina Perez", "Camila Martinez"];
+    const servicios = ["manicureBásico", "pedicureBásico", "esmaltadoPermanente", "esmaltadoPermanente", "manicureFrancés", "pedicureFrancés", "uñasAcrílicas", "uñasDeGel", "decoraciónDeUñas", "manicureSpa", "pedicureSpa"];
 
     const selectManicurista = document.getElementById("manicurista-reagendar");
     manicuristas.forEach(manicurista => {
@@ -607,31 +536,31 @@ document.addEventListener("DOMContentLoaded", function() {
         selectServicio.appendChild(option);
     });
 
-    const selectHora = document.getElementById("hora-reagendar");
-    horas.forEach(hora => {
-        const option = document.createElement("option");
-        option.value = hora;
-        option.textContent = hora;
-        selectHora.appendChild(option);
-    });
-
     let idCitaAReagendar = null;
 
     window.mostrarFormularioReagendar = function(idCita, manicuristaActual, fechaActual, horaActual, servicioActual) {
         idCitaAReagendar = idCita;
 
-        // Mostrar el formulario de reagendar
         const formularioReagendar = document.getElementById("formulario-reagendar");
         formularioReagendar.style.display = "block";
         modificarCita.style.display = "none";
 
-        // Rellenar los campos del formulario con los datos actuales de la cita
+        const fechaHoy = new Date();
+        const year = fechaHoy.getFullYear();
+        const month = (fechaHoy.getMonth() + 1).toString().padStart(2, '0');
+        const day = fechaHoy.getDate().toString().padStart(2, '0');
+        const fechaMinima = `${year}-${month}-${day}`;
+        document.getElementById("fecha-reagendar").setAttribute("min", fechaMinima);
+
         document.getElementById("manicurista-reagendar").value = manicuristaActual;
         document.getElementById("servicio-reagendar").value = servicioActual;
-        document.getElementById("fecha-reagendar").value = fechaActual.split(" ")[0]; // Ajustar formato de fecha si es necesario
+        document.getElementById("fecha-reagendar").value = fechaActual.split(" ")[0];
         document.getElementById("hora-reagendar").value = horaActual;
 
-        // Event listener para el botón Guardar
+        document.getElementById("manicurista-reagendar").addEventListener("change", actualizarHorasDisponibles);
+        document.getElementById("servicio-reagendar").addEventListener("change", actualizarHorasDisponibles);
+        document.getElementById("fecha-reagendar").addEventListener("change", actualizarHorasDisponibles);
+
         document.getElementById("guardar-reagendar").onclick = function() {
             const nuevaManicurista = document.getElementById("manicurista-reagendar").value;
             const nuevoServicio = document.getElementById("servicio-reagendar").value;
@@ -639,20 +568,87 @@ document.addEventListener("DOMContentLoaded", function() {
             const nuevaHora = document.getElementById("hora-reagendar").value;
 
             actualizarCita(idCitaAReagendar, nuevaManicurista, nuevoServicio, nuevaFecha, nuevaHora);
-            botonRetornar.style.display = "block";
-            modificarCita.style.display = "block";
+            botonRetornar.style.display = "none";
+            modificarCita.style.display = "none";
         };
 
-        // Event listener para el botón Cancelar
         document.getElementById("cancelar-reagendar").onclick = function() {
             formularioReagendar.style.display = "none";
             modificarCita.style.display = "none";
-            retornar() 
+            botonRetornar.style.display = "block";
+            retornar();
         };
     }
+
+    function actualizarHorasDisponibles() {
+        const manicurista = document.getElementById("manicurista-reagendar").value;
+        const servicio = document.getElementById("servicio-reagendar").value;
+        const fecha = document.getElementById("fecha-reagendar").value;
+
+        if (manicurista && servicio && fecha) {
+            fetch(`/horas-disponibles?fecha=${fecha}&manicurista=${manicurista}&servicio=${servicio}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const selectHora = document.getElementById("hora-reagendar");
+                    selectHora.innerHTML = "";
+
+                    data.horasDisponibles.forEach(hora => {
+                        const option = document.createElement("option");
+                        option.value = hora;
+                        option.textContent = hora;
+                        selectHora.appendChild(option);
+                    });
+                } else {
+                    alert("Error al obtener horas disponibles: " + data.message);
+                }
+            })
+            .catch(error => {
+                console.error("Error al obtener horas disponibles:", error);
+                alert("Error al obtener horas disponibles");
+            });
+        }
+    }
+
+    function actualizarCita(idCita, manicurista, servicio, fecha, hora) {
+        fetch(`/actualizar-cita/${idCita}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ manicurista, servicio, fecha, hora })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Tu cita  fue actualizada correctamente");
+                location.reload();
+            } else {
+                alert("Error al actualizar la cita: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error("Error al actualizar la cita:", error);
+            alert("Error al actualizar la cita");
+        });
+    }
 });
-
-
+function retornarAgenda(){
+    if (citaAgendada) {
+        portada.style.display = "none";
+        agendarcita.style.display = "none";
+        mensaje1.style.display = "none";
+        mensaje2.style.display = "none";
+        botonhoras1.style.display= "none";
+        modificarCita.style.display= "none";
+        Calendario.style.display = "none";
+        encabezado.style.display = "block";
+        mensaje4.style.display = "block";
+        citaAgendada = false;
+    } else {
+        window.location.href = "/";
+    }
+}
 
 // Función que recarga la página para agendar una nueva cita
 function retornar() {
@@ -662,9 +658,9 @@ function retornar() {
         mensaje1.style.display = "none";
         mensaje2.style.display = "none";
         botonhoras1.style.display= "none";
+        modificarCita.style.display= "none";
         Calendario.style.display = "none";
         encabezado.style.display = "block";
-        botonRetornar.style.display = "block";
         mensaje3.style.display = "block";
         citaAgendada = false;
     } else {
