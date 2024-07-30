@@ -1,5 +1,6 @@
 // Constantes globales
 const formulario = document.getElementById("formulario");
+const Servicios = document.getElementById("servicio");
 const botonhoras1 = document.getElementById("bloques");
 const modificarCita = document.getElementById("lista-citas");
 const mensaje1 = document.getElementById("mensaje1");
@@ -65,6 +66,8 @@ function camposSelect() {
 function agendadisponible(){
     formulario.style.display = "block";
     inicio.style.display = "none";
+    redesSociales.style.display = "none";
+    Servicios.style.display = "none";
 }
 function ActualizarCita(){
     modificarCita.style.display = "block";

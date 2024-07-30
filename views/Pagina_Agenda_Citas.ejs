@@ -42,7 +42,7 @@
         <div class="formas-informacion">
             <div class="portadaInicio">
                 <div class="formas-informacion-childs">
-                    <h2 id="encabezadoAgenda">Agenda Tu Cita</h2>
+                    <h2 id="encabezadoAgenda">Agenda Tu Cita</h2><br>
                     <div id="redes" class="iconos">
                         <i class='bx bxl-whatsapp'></i>
                         <i class='bx bxl-tiktok'></i>
@@ -83,16 +83,42 @@
                 <form id="formulario" action="/cita" method="post">
                     <!-- Seccion manicuristas-->
                     <label for="manicurista">Manicurista</label>
-                    <select id="manicurista" name="manicurista" required>
+                <div class="Manicuristas1">
+                    <div id="Manicu1"  class="Manicu">
+                        <img class="imgMani" src="./Fondo/Aura.jpg" alt="Aura">
+                        <option value="Aura lopez">Aura </option>
+                    </div>
+                    <div id="Manicu2" class="Manicu">
+                        <img class="imgMani" src="./Fondo/Leidy.jpeg" alt="Leidy ">
+                        <option value="Leidy Camargo">Leidy </option>
+                    </div>
+                    <div id="Manicu3" class="Manicu">
+                        <img class="imgMani" src="./Fondo/Adrina.jpeg" alt="Adrina ">
+                        <option value="Adrina Perez">Adrina </option>
+                    </div>
+                </div> <br>
+                <div class="Manicuristas2">
+                    <div id="Manicu4"  class="Manicu">
+                        <img class="imgMani" src="./Fondo/Deisy.jpeg" alt="Deisy">
+                        <option value="Deisy ">Deisy </option>
+                    </div>
+                    <div id="Manicu5" class="Manicu">
+                        <img class="imgMani" src="./Fondo/Andrea.jpeg" alt="Andrea">
+                        <option value="Andrea ">Andrea </option>
+                    </div>
+                    <div id="Manicu6" class="Manicu">
+                        <img class="imgMani" src="./Fondo/Camila.jpg" alt="Camila ">
+                        <option value="Camila ">Camila </option>
+                    </div>
+                </div>     
+                    
+                    <!--<select id="manicurista" name="manicurista" required>
                         <option value=""></option>
-                        <option value="Aura lopez">Aura lopez</option>
-                        <option value="Leidy Camargo">Leidy Camargo</option>
-                        <option value="Adrina Perez">Adrina Perez</option>
                         <option value="Camila Martinez">Camila Martinez</option>
-                    </select><br>
+                    </select><br>-->
                     <!-- Seccion tipos de servicios-->
-                    <label for="servicio">Tipo de Servicio</label><br>
                     <select id="servicio" name="servicio" required>
+                        <label for="servicio">Tipo de Servicio</label><br>
                         <option value=""></option>
                         <option value="manicureBásico" class="servicios">Manicure básico</option>
                         <option value="pedicureBásico" class="servicios">Pedicure básico</option>

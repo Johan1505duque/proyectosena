@@ -234,6 +234,20 @@ img{
     height: 200px;
     border-radius: 0 25% 0 25%;
 }
+.Manicuristas1,.Manicuristas2{
+    display: flex;
+    margin: 0 5px 0 5px;
+}
+.Manicu{
+    margin: 0 5px 0 5px;
+}
+
+.imgMani{
+    width: 70px;
+    height: 70px;
+    border-radius: 0 25% 0 25%;
+}
+
 
 #formulario{
     display: grid;
