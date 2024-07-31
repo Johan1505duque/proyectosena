@@ -43,7 +43,7 @@ formulario.style.display = "none";
 modificarCita.style.display = "none";
 
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("manicurista").addEventListener("change", function () {
+    document.getElementById("manicurista1").addEventListener("change", function () {
         Manicurista = manicurista.value;
         camposSelect();
     });
@@ -67,7 +67,7 @@ function agendadisponible(){
     formulario.style.display = "block";
     inicio.style.display = "none";
     redesSociales.style.display = "none";
-    Servicios.style.display = "none";
+    portada.style.display = "none";
 }
 function ActualizarCita(){
     modificarCita.style.display = "block";
@@ -75,6 +75,9 @@ function ActualizarCita(){
     redesSociales.style.display = "none";
     portada.style.display = "none";
     bienvenida.style.display = "none";
+}
+function servicio() {
+    document.getElementById('servicio').style.display = 'block';
 }
 
 // Calendario

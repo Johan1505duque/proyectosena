@@ -81,44 +81,56 @@
                 </div>
                 <!--Seccion de formulario de registro-->
                 <form id="formulario" action="/cita" method="post">
+                    <h2 id="encabeManucurista" for="manicurista">Manicurista</h2>
                     <!-- Seccion manicuristas-->
-                    <label for="manicurista">Manicurista</label>
                 <div class="Manicuristas1">
-                    <div id="Manicu1"  class="Manicu">
-                        <img class="imgMani" src="./Fondo/Aura.jpg" alt="Aura">
-                        <option value="Aura lopez">Aura </option>
+                    <div id="Manicu1" class="Manicu">
+                        <button type="button" onclick="servicio()">
+                            <img class="imgMani" src="./Fondo/Aura.jpg" alt="Aura">
+                            Aura 
+                        </button>
                     </div>
                     <div id="Manicu2" class="Manicu">
-                        <img class="imgMani" src="./Fondo/Leidy.jpeg" alt="Leidy ">
-                        <option value="Leidy Camargo">Leidy </option>
+                        <button type="button" onclick="servicio()">
+                            <img class="imgMani" src="./Fondo/Leidy.jpeg" alt="Leidy">
+                            Leidy
+                        </button>
                     </div>
                     <div id="Manicu3" class="Manicu">
-                        <img class="imgMani" src="./Fondo/Adrina.jpeg" alt="Adrina ">
-                        <option value="Adrina Perez">Adrina </option>
+                        <button type="button" onclick="servicio()">
+                            <img class="imgMani" src="./Fondo/Adrina.jpeg" alt="Adrina">
+                            Adrina
+                        </button>
                     </div>
-                </div> <br>
-                <div class="Manicuristas2">
-                    <div id="Manicu4"  class="Manicu">
-                        <img class="imgMani" src="./Fondo/Deisy.jpeg" alt="Deisy">
-                        <option value="Deisy ">Deisy </option>
+                </div> 
+                <br>
+                <div id="manicurista1" class="Manicuristas2">
+                    <div id="Manicu4" class="Manicu">
+                        <button type="button" onclick="servicio()">
+                            <img class="imgMani" src="./Fondo/Deisy.jpeg" alt="Deisy">
+                            Deisy 
+                        </button>
                     </div>
                     <div id="Manicu5" class="Manicu">
-                        <img class="imgMani" src="./Fondo/Andrea.jpeg" alt="Andrea">
-                        <option value="Andrea ">Andrea </option>
+                        <button type="button" onclick="servicio()">
+                            <img class="imgMani" src="./Fondo/Andrea.jpeg" alt="Andrea">
+                            Andrea 
+                        </button>
                     </div>
                     <div id="Manicu6" class="Manicu">
-                        <img class="imgMani" src="./Fondo/Camila.jpg" alt="Camila ">
-                        <option value="Camila ">Camila </option>
+                        <button type="button" onclick="servicio()">
+                            <img class="imgMani" src="./Fondo/Camila.jpg" alt="Camila">
+                            Camila 
+                        </button>
                     </div>
-                </div>     
+                </div>      
                     
                     <!--<select id="manicurista" name="manicurista" required>
                         <option value=""></option>
                         <option value="Camila Martinez">Camila Martinez</option>
                     </select><br>-->
                     <!-- Seccion tipos de servicios-->
-                    <select id="servicio" name="servicio" required>
-                        <label for="servicio">Tipo de Servicio</label><br>
+                    <select id="servicio" name="servicio" required style="display: none;">
                         <option value=""></option>
                         <option value="manicureBásico" class="servicios">Manicure básico</option>
                         <option value="pedicureBásico" class="servicios">Pedicure básico</option>
@@ -130,7 +142,7 @@
                         <option value="decoraciónDeUñas" class="servicios">Decoración de uñas</option>
                         <option value="manicureSpa" class="servicios">Manicure spa</option>
                         <option value="pedicureSpa" class="servicios">Pedicure spa</option>
-                    </select><br>
+                    </select>
                 </form>
                 <div id="lista-citas" >
                     <!-- Aquí se mostrarán las citas -->
