@@ -68,6 +68,7 @@ function agendadisponible(){
     inicio.style.display = "none";
     redesSociales.style.display = "none";
     portada.style.display = "none";
+    document.getElementById('menRedes').style.display = 'none';
 }
 function ActualizarCita(){
     modificarCita.style.display = "block";
@@ -76,8 +77,10 @@ function ActualizarCita(){
     portada.style.display = "none";
     bienvenida.style.display = "none";
 }
-function servicio() {
+function procedimientos(){
     document.getElementById('servicio').style.display = 'block';
+    document.getElementById('emple').style.display = 'none';
+    document.getElementById('servi').style.display = 'block';
 }
 
 // Calendario

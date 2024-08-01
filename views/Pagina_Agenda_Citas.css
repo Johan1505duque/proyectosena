@@ -13,6 +13,10 @@ body{
     background-image: url(./Fondo/images\ \(1\).jpeg);
     background-size:contain;
 }
+#servi{
+    display:flex;
+    justify-content: center;
+}
 
 .contenedor-formas{
     display: flex;
@@ -51,10 +55,10 @@ body{
     display: flex;
     justify-content: center;
 }
-h2{
+h2,#menRedes,#inicio{
     margin: 0 0 20px o;
     color: #333;
-    display: flex;
+    display: grid;
     justify-content: center;
 }
 input,label{
@@ -100,8 +104,8 @@ p, #mensajesconfirmar{
     display: grid;
     justify-content: center;
     align-items: center;
-    height: 70%; 
-    margin: 15%;
+    height: 110%; 
+    margin: 3%;
 }
 
 #lista-citas {
@@ -234,9 +238,14 @@ img{
     height: 200px;
     border-radius: 0 25% 0 25%;
 }
-.Manicuristas1,.Manicuristas2{
+.Manicuristas1{
     display: flex;
-    margin: 0 5px 0 5px;
+    margin: 0 5px 0 10px;
+}
+.ser1{
+    display: flex;
+    margin:15px 0 15px 0 ;
+    
 }
 .Manicu{
     margin: 0 5px 0 5px;
@@ -251,7 +260,6 @@ img{
 
 #formulario{
     display: grid;
-    justify-content: space-between;
     margin-right:30px;
     margin-left: 30px;  
 }

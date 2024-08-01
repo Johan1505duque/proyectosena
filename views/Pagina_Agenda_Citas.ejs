@@ -27,11 +27,8 @@
                 <h2> Gracias por agendar con nosotros</h2><br>
                 <img src="./Fondo/images.jpeg" alt="pedicure">
             </div>
-            <!--<div id="calendar">
-                
-            </div>-->
+            <!-- calendario-->
             <div id="Calendario" class="calendario"> 
-                
                 <!--Seccion horarios diponibles-->
             </div>
             <div id="bloques">
@@ -47,11 +44,123 @@
                         <i class='bx bxl-whatsapp'></i>
                         <i class='bx bxl-tiktok'></i>
                         <i class='bx bxl-instagram'></i>
-                    </div>
+                    </div>     
+                    <p id="menRedes">Síguenos en nuestras redes</p>
                     <div id="inicio">
-                        <p class="">Síguenos en nuestras redes</p>
                         <button id="AgendaDisponible" class="botones" type="submit" onclick="agendadisponible()">Agenda Disponible</button>
                         <button id="modificarcitas" class="botones" type="submit" onclick="ActualizarCita()">¿Deseas cancelar o reagendar una cita? </button>
+                    </div>
+                    <h2  id="servi" class="informacion-childs" style="display: none;" >servicios</h2>
+                        <form id="formulario" action="/cita" method="post">
+                            <div id="servicio" name="servicio" required style="display: none;">
+                                <div id="prose1" class="ser1" >
+                                    <div id="Manicu6" class="servicios">
+                                        <button type="button" onclick="procedimientos()">
+                                            <img class="imgMani" src="./Fondo/maniBasico.jpeg" alt="Camila">
+                                            Manicure básico
+                                        </button>
+                                    </div>
+                                    <div id="Manicu6" class="servicios">
+                                        <button type="button" onclick="procedimientos()">
+                                            <img class="imgMani" src="./Fondo/padiBasico.jpeg" alt="Camila">
+                                            Pedicure básico
+                                        </button>
+                                    </div>
+                                    <div id="Manicu6" class="servicios">
+                                        <button type="button" onclick="procedimientos()">
+                                            <img class="imgMani" src="./Fondo/esmalPerma.jpeg" alt="Camila">
+                                            Esmaltado permanente
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div id="prose2" class="ser1" >
+                                    <div id="Manicu6" class="servicios">
+                                        <button type="button" onclick="procedimientos()">
+                                            <img class="imgMani" src="./Fondo/maniFrances .jpeg" alt="Camila">
+                                            Manicure francés
+                                        </button>
+                                    </div>
+                                    <div id="Manicu6" class="servicios">
+                                        <button type="button" onclick="procedimientos()">
+                                            <img class="imgMani" src="./Fondo/pediFran.jpeg" alt="Camila">
+                                            Pedicure francés
+                                        </button>
+                                    </div>
+                                    <div id="Manicu6" class="servicios">
+                                        <button type="button" onclick="procedimientos()">
+                                            <img class="imgMani" src="./Fondo/uñasAcri.jpeg" alt="Camila">
+                                            Uñas acrílicas
+                                        </button>
+                                    </div>
+                                </div>  
+                                <div id="prose3" class="ser1" >  
+                                    <div id="Manicu6" class="servicios">
+                                        <button type="button" onclick="procedimientos()">
+                                            <img class="imgMani" src="./Fondo/uñasGel.jpeg" alt="Camila">
+                                            Uñas de gel
+                                        </button>
+                                    </div>
+                                    <div id="Manicu6" class="servicios">
+                                        <button type="button" onclick="procedimientos()">
+                                            <img class="imgMani" src="./Fondo/manicuSpa.jpeg" alt="Camila">
+                                            Manicure spa
+                                        </button>
+                                    </div>
+                                    <div id="Manicu6" class="servicios">
+                                        <button type="button" onclick="procedimientos()">
+                                            <img class="imgMani" src="./Fondo/pediSpa.jpeg" alt="Camila">
+                                            Pedicure spa
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>    
+                        <div id="emple">
+                            <h2 id="encabeManucurista" for="manicurista">Manicuristas</h2>
+                                <!-- Seccion manicuristas-->
+                            <div id="manicurista1" class="Manicuristas1">
+                                <div id="Manicu1" class="Manicu">
+                                    <button type="button" onclick="procedimientos()">
+                                        <img class="imgMani" src="./Fondo/Aura.jpg" alt="Aura">
+                                        Aura 
+                                    </button>
+                                </div>
+                                <div id="Manicu2" class="Manicu">
+                                    <button type="button" onclick="procedimientos()">
+                                        <img class="imgMani" src="./Fondo/Leidy.jpeg" alt="Leidy">
+                                        Leidy
+                                    </button>
+                                </div>
+                                <div id="Manicu3" class="Manicu">
+                                    <button type="button" onclick="procedimientos()">
+                                        <img class="imgMani" src="./Fondo/Adrina.jpeg" alt="Adrina">
+                                        Adrina
+                                    </button>
+                                </div>
+                            </div> 
+                            <br>
+                            <div id="manicurista2" class="Manicuristas1">
+                                <div id="Manicu4" class="Manicu">
+                                    <button type="button" onclick="procedimientos()">
+                                        <img class="imgMani" src="./Fondo/Deisy.jpeg" alt="Deisy">
+                                        Deisy 
+                                    </button>
+                                </div>
+                                <div id="Manicu5" class="Manicu">
+                                    <button type="button" onclick="procedimientos()">
+                                        <img class="imgMani" src="./Fondo/Andrea.jpeg" alt="Andrea">
+                                        Andrea 
+                                    </button>
+                                </div>
+                                <div id="Manicu6" class="Manicu">
+                                    <button type="button" onclick="procedimientos()">
+                                        <img class="imgMani" src="./Fondo/Camila.jpg" alt="Camila">
+                                        Camila 
+                                    </button>
+                                </div>
+                            </div>      
+                        </div>  
+                        </form>
                     </div>
                 </div>
                 <div id="formulario-reagendar" style="display:none;">
@@ -80,70 +189,6 @@
                     </form>
                 </div>
                 <!--Seccion de formulario de registro-->
-                <form id="formulario" action="/cita" method="post">
-                    <h2 id="encabeManucurista" for="manicurista">Manicurista</h2>
-                    <!-- Seccion manicuristas-->
-                <div class="Manicuristas1">
-                    <div id="Manicu1" class="Manicu">
-                        <button type="button" onclick="servicio()">
-                            <img class="imgMani" src="./Fondo/Aura.jpg" alt="Aura">
-                            Aura 
-                        </button>
-                    </div>
-                    <div id="Manicu2" class="Manicu">
-                        <button type="button" onclick="servicio()">
-                            <img class="imgMani" src="./Fondo/Leidy.jpeg" alt="Leidy">
-                            Leidy
-                        </button>
-                    </div>
-                    <div id="Manicu3" class="Manicu">
-                        <button type="button" onclick="servicio()">
-                            <img class="imgMani" src="./Fondo/Adrina.jpeg" alt="Adrina">
-                            Adrina
-                        </button>
-                    </div>
-                </div> 
-                <br>
-                <div id="manicurista1" class="Manicuristas2">
-                    <div id="Manicu4" class="Manicu">
-                        <button type="button" onclick="servicio()">
-                            <img class="imgMani" src="./Fondo/Deisy.jpeg" alt="Deisy">
-                            Deisy 
-                        </button>
-                    </div>
-                    <div id="Manicu5" class="Manicu">
-                        <button type="button" onclick="servicio()">
-                            <img class="imgMani" src="./Fondo/Andrea.jpeg" alt="Andrea">
-                            Andrea 
-                        </button>
-                    </div>
-                    <div id="Manicu6" class="Manicu">
-                        <button type="button" onclick="servicio()">
-                            <img class="imgMani" src="./Fondo/Camila.jpg" alt="Camila">
-                            Camila 
-                        </button>
-                    </div>
-                </div>      
-                    
-                    <!--<select id="manicurista" name="manicurista" required>
-                        <option value=""></option>
-                        <option value="Camila Martinez">Camila Martinez</option>
-                    </select><br>-->
-                    <!-- Seccion tipos de servicios-->
-                    <select id="servicio" name="servicio" required style="display: none;">
-                        <option value=""></option>
-                        <option value="manicureBásico" class="servicios">Manicure básico</option>
-                        <option value="pedicureBásico" class="servicios">Pedicure básico</option>
-                        <option value="esmaltadoPermanente" class="servicios">Esmaltado permanente</option>
-                        <option value="manicureFrancés" class="servicios">Manicure francés</option>
-                        <option value="pedicureFrancés" class="servicios">Pedicure francés</option>
-                        <option value="uñasAcrílicas" class="servicios">Uñas acrílicas</option>
-                        <option value="uñasDeGel" class="servicios">Uñas de gel</option>
-                        <option value="decoraciónDeUñas" class="servicios">Decoración de uñas</option>
-                        <option value="manicureSpa" class="servicios">Manicure spa</option>
-                        <option value="pedicureSpa" class="servicios">Pedicure spa</option>
-                    </select>
-                </form>
                 <div id="lista-citas" >
                     <!-- Aquí se mostrarán las citas -->
                 </div>
