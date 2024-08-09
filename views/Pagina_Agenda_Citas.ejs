@@ -45,71 +45,70 @@
                         <i class='bx bxl-tiktok'></i>
                         <i class='bx bxl-instagram'></i>
                     </div>     
-                    <p id="menRedes">Síguenos en nuestras redes</p>
                     <div id="inicio">
+                        
                         <button id="AgendaDisponible" class="botones" type="submit" onclick="agendadisponible()">Agenda Disponible</button>
                         <button id="modificarcitas" class="botones" type="submit" onclick="ActualizarCita()">¿Deseas cancelar o reagendar una cita? </button>
                     </div>
-                    <h2  id="servi" class="informacion-childs" style="display: none;" >servicios</h2>
-                        <form id="formulario" action="/cita" method="post">
-                            <div id="servicio" name="servicio" required style="display: none;">
-                                <div id="prose1" class="ser1" >
-                                    <div id="Manicu6" class="servicios">
-                                        <button type="button" onclick="procedimientos()">
-                                            <img class="imgMani" src="./Fondo/maniBasico.jpeg" alt="Camila">
+                    <form id="formulario" action="/cita" method="post">
+                        <div id="servicio" name="servicio" required style="display: none;">
+                                <h2 id="servi" style="display: none;" >servicios</h2>
+                                <div id="prose1" class="ser1">
+                                    <div id="manicureBasico" class="servicios">
+                                        <button type="button" onclick="seleccionarServicio('Manicure básico')">
+                                            <img class="imgMani" src="./Fondo/maniBasico.jpeg" alt="Manicure básico">
                                             Manicure básico
                                         </button>
                                     </div>
-                                    <div id="Manicu6" class="servicios">
-                                        <button type="button" onclick="procedimientos()">
-                                            <img class="imgMani" src="./Fondo/padiBasico.jpeg" alt="Camila">
+                                    <div id="pedicureBasico" class="servicios">
+                                        <button type="button" onclick="seleccionarServicio('Pedicure básico')">
+                                            <img class="imgMani" src="./Fondo/padiBasico.jpeg" alt="Pedicure básico">
                                             Pedicure básico
                                         </button>
                                     </div>
-                                    <div id="Manicu6" class="servicios">
-                                        <button type="button" onclick="procedimientos()">
-                                            <img class="imgMani" src="./Fondo/esmalPerma.jpeg" alt="Camila">
+                                    <div id="esmaltadoPermanente" class="servicios">
+                                        <button type="button" onclick="seleccionarServicio('Esmaltado permanente')">
+                                            <img class="imgMani" src="./Fondo/esmalPerma.jpeg" alt="Esmaltado permanente">
                                             Esmaltado permanente
                                         </button>
                                     </div>
                                 </div>
-                                
                                 <div id="prose2" class="ser1" >
-                                    <div id="Manicu6" class="servicios">
-                                        <button type="button" onclick="procedimientos()">
-                                            <img class="imgMani" src="./Fondo/maniFrances .jpeg" alt="Camila">
+                                    <div id="manicureFrances" class="servicios">
+                                        <button type="button" onclick="seleccionarServicio('Manicure francés')">
+                                            <img class="imgMani" src="./Fondo/maniFrances .jpeg" alt="Manicure francés">
                                             Manicure francés
                                         </button>
                                     </div>
-                                    <div id="Manicu6" class="servicios">
-                                        <button type="button" onclick="procedimientos()">
-                                            <img class="imgMani" src="./Fondo/pediFran.jpeg" alt="Camila">
+                                    <div id="pedicureFrances" class="servicios">
+                                        <button type="button" onclick="seleccionarServicio('Pedicure francés')">
+                                            <img class="imgMani" src="./Fondo/pediFran.jpeg" alt="Pedicure francés">
                                             Pedicure francés
                                         </button>
                                     </div>
-                                    <div id="Manicu6" class="servicios">
-                                        <button type="button" onclick="procedimientos()">
-                                            <img class="imgMani" src="./Fondo/uñasAcri.jpeg" alt="Camila">
+                                    <div id="unasAcrílicas" class="servicios">
+                                        <button type="button" onclick="seleccionarServicio('Uñas acrílicas')">
+                                            <img class="imgMani" src="./Fondo/uñasAcri.jpeg" alt="Uñas acrílicas">
                                             Uñas acrílicas
                                         </button>
                                     </div>
                                 </div>  
                                 <div id="prose3" class="ser1" >  
-                                    <div id="Manicu6" class="servicios">
-                                        <button type="button" onclick="procedimientos()">
-                                            <img class="imgMani" src="./Fondo/uñasGel.jpeg" alt="Camila">
+                                    <div id="unasDeGel" class="servicios">
+                                        <button type="button" onclick="seleccionarServicio('Uñas de gel')">
+                                            <img class="imgMani" src="./Fondo/uñasGel.jpeg" alt="Uñas de gel">
                                             Uñas de gel
                                         </button>
                                     </div>
-                                    <div id="Manicu6" class="servicios">
-                                        <button type="button" onclick="procedimientos()">
-                                            <img class="imgMani" src="./Fondo/manicuSpa.jpeg" alt="Camila">
+                                    <div id="manicureSpa" class="servicios">
+                                        <button type="button" onclick="seleccionarServicio('Manicure spa')">
+                                            <img class="imgMani" src="./Fondo/manicuSpa.jpeg" alt="Manicure spa">
                                             Manicure spa
                                         </button>
                                     </div>
-                                    <div id="Manicu6" class="servicios">
-                                        <button type="button" onclick="procedimientos()">
-                                            <img class="imgMani" src="./Fondo/pediSpa.jpeg" alt="Camila">
+                                    <div id="pedicureSpa" class="servicios">
+                                        <button type="button" onclick="seleccionarServicio('Pedicure spa')">
+                                            <img class="imgMani" src="./Fondo/pediSpa.jpeg" alt="Pedicure spa">
                                             Pedicure spa
                                         </button>
                                     </div>
@@ -119,46 +118,48 @@
                             <h2 id="encabeManucurista" for="manicurista">Manicuristas</h2>
                                 <!-- Seccion manicuristas-->
                             <div id="manicurista1" class="Manicuristas1">
-                                <div id="Manicu1" class="Manicu">
-                                    <button type="button" onclick="procedimientos()">
-                                        <img class="imgMani" src="./Fondo/Aura.jpg" alt="Aura">
-                                        Aura 
-                                    </button>
-                                </div>
-                                <div id="Manicu2" class="Manicu">
-                                    <button type="button" onclick="procedimientos()">
+                                <div id="manicurista1" class="Manicuristas1">
+                                    <div id="Aura" class="Manicu">
+                                        <button type="button" onclick="seleccionarManicurista('Aura')">
+                                            <img class="imgMani" src="./Fondo/Aura.jpg" alt="Aura">
+                                            Aura
+                                        </button>
+                                    </div>
+                                <div id="Leidy" class="Manicu">
+                                    <button type="button" onclick="seleccionarManicurista('Leidy')">
                                         <img class="imgMani" src="./Fondo/Leidy.jpeg" alt="Leidy">
                                         Leidy
                                     </button>
                                 </div>
-                                <div id="Manicu3" class="Manicu">
-                                    <button type="button" onclick="procedimientos()">
+                                <div id="Adrina" class="Manicu">
+                                    <button type="button" onclick="seleccionarManicurista('Adrina')">
                                         <img class="imgMani" src="./Fondo/Adrina.jpeg" alt="Adrina">
                                         Adrina
                                     </button>
                                 </div>
-                            </div> 
+                                </div> 
+                            </div>
                             <br>
                             <div id="manicurista2" class="Manicuristas1">
-                                <div id="Manicu4" class="Manicu">
-                                    <button type="button" onclick="procedimientos()">
+                                <div id="Deisy" class="Manicu">
+                                    <button type="button" onclick="seleccionarManicurista('Deisy')">
                                         <img class="imgMani" src="./Fondo/Deisy.jpeg" alt="Deisy">
                                         Deisy 
                                     </button>
                                 </div>
-                                <div id="Manicu5" class="Manicu">
-                                    <button type="button" onclick="procedimientos()">
+                                <div id="Andrea" class="Manicu">
+                                    <button type="button" onclick="seleccionarManicurista(' Andrea ')">
                                         <img class="imgMani" src="./Fondo/Andrea.jpeg" alt="Andrea">
                                         Andrea 
                                     </button>
                                 </div>
-                                <div id="Manicu6" class="Manicu">
-                                    <button type="button" onclick="procedimientos()">
+                                <div id="Camila" class="Manicu">
+                                    <button type="button" onclick="seleccionarManicurista('Camila')">
                                         <img class="imgMani" src="./Fondo/Camila.jpg" alt="Camila">
                                         Camila 
                                     </button>
                                 </div>
-                            </div>      
+                                </div>
                         </div>  
                         </form>
                     </div>

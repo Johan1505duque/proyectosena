@@ -22,8 +22,10 @@ const contenedorPadre = document.createElement("formas-informacion");
 
 let texdia = "";
 let texhora = "";
-let Manicurista = "";
-let Servicio = "";
+let manicuristaSeleccionada = '';
+let servicioSeleccionado = '';
+let manicurista= '';
+let servicio= '';
 let fechaseleccionada = "";
 
 let citaAgendada = true;
@@ -42,20 +44,26 @@ Calendario.style.display = "none";
 formulario.style.display = "none";
 modificarCita.style.display = "none";
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("manicurista1").addEventListener("change", function () {
-        Manicurista = manicurista.value;
-        camposSelect();
-    });
-    document.getElementById("servicio").addEventListener("change", function () {
-        Servicio = servicio.value;
-        camposSelect();
-    });
-});
+function seleccionarManicurista(manicurista) {
+    manicuristaSeleccionada = manicurista;
+    document.getElementById('servicio').style.display = 'block';
+    document.getElementById('servi').style.display = 'block';
+    console.log(`Manicurista seleccionada: ${manicuristaSeleccionada}`);
+    document.getElementById('emple').style.display = 'none';
+}
+
+function seleccionarServicio(servicio) {
+    servicioSeleccionado = servicio;
+    document.getElementById('Calendario').style.display = 'block';
+    console.log(`Servicio seleccionado: ${servicioSeleccionado}`);
+    bienvenida.style.display = 'none';
+    document.getElementById('servicio').style.display = 'none';
+    document.getElementById("mensaje1").style.display = 'block';
+}
 
 // Función que verifica que los campos manicurista y servicio fueron seleccionados correctamente
 function camposSelect() {
-    if (Manicurista && Servicio) {
+    if (manicuristaSeleccionada && servicioSeleccionado) {
         confirmarfechas();
         formulario.style.display = "none";
         Calendario.style.display = "block";
@@ -68,7 +76,6 @@ function agendadisponible(){
     inicio.style.display = "none";
     redesSociales.style.display = "none";
     portada.style.display = "none";
-    document.getElementById('menRedes').style.display = 'none';
 }
 function ActualizarCita(){
     modificarCita.style.display = "block";
@@ -76,11 +83,6 @@ function ActualizarCita(){
     redesSociales.style.display = "none";
     portada.style.display = "none";
     bienvenida.style.display = "none";
-}
-function procedimientos(){
-    document.getElementById('servicio').style.display = 'block';
-    document.getElementById('emple').style.display = 'none';
-    document.getElementById('servi').style.display = 'block';
 }
 
 // Calendario
@@ -204,10 +206,10 @@ function selecdia() {
     fetch("/consulta", {
         method: "POST",
         body: JSON.stringify({
-            manicurista: Manicurista,
-            servicio: Servicio,
-            fecha: texdia
-        }),
+    manicurista: manicuristaSeleccionada,
+    servicio: servicioSeleccionado,
+    fecha: texdia
+}),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
@@ -273,17 +275,17 @@ function selecdia() {
     });
 
     // Mostrar u ocultar el contenedor de botones de horas según el tipo de servicio seleccionado
-    if (Servicio === "manicure Básico" || Servicio === "pedicure Básico" || Servicio === "esmaltado Permanente" || Servicio === "uñas Acrílicas" || Servicio === "uñas De Gel") {
-        botonhoras1.style.display = "none"; // Ocultar el contenedor si no se requieren horas
+    if (servicioSeleccionado === "manicure Básico" || servicioSeleccionado === "pedicure Básico" || servicioSeleccionado === "esmaltado Permanente" || servicioSeleccionado === "uñas Acrílicas" || servicioSeleccionado === "uñas De Gel") {
+        botonhoras1.style.display = "none"; 
     } else {
-        botonhoras1.style.display = "block"; // Mostrar el contenedor si se requieren horas
+        botonhoras1.style.display = "block"; 
     }
 }
 
 
 // Función que almacena mensajes informativos 
 function confirmarfechas() {
-    mensaje1.innerHTML = `Tu cita será atendida por ${manicurista.options[manicurista.selectedIndex].text}. El servicio a realizar es ${servicio.options[servicio.selectedIndex].text}.`;
+    mensaje1.innerHTML = `Tu cita será atendida por ${manicuristaSeleccionada}. El servicio a realizar es ${servicioSeleccionado}.`;
     mensaje2.innerHTML = `Tu cita se llevará a cabo el día ${texdia}. A las ${texhora}.`;
     mensaje3.innerHTML = 'Tu cita fue agendada con éxito. Recuerda llegar con 5 minutos de anterioridad.';
 }
@@ -331,8 +333,8 @@ function filtrarHorasPasadas(horas, fechaSeleccionada) {
 // Función que envía datos a la base de datos
 function confirmardatos() {
     let datos = {
-        manicurista: Manicurista,
-        servicio: Servicio,
+        manicurista: manicuristaSeleccionada,
+        servicio: servicioSeleccionado,
         fecha: texdia,
         hora: texhora
     };
