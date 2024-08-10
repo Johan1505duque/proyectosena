@@ -59,6 +59,7 @@ function seleccionarServicio(servicio) {
     bienvenida.style.display = 'none';
     document.getElementById('servicio').style.display = 'none';
     document.getElementById("mensaje1").style.display = 'block';
+    confirmarfechas();
 }
 
 // Función que verifica que los campos manicurista y servicio fueron seleccionados correctamente
@@ -201,7 +202,6 @@ mostrarMes(hoy.getMonth(), hoy.getFullYear());
 // Función que al seleccionar el día despliega el horario de servicio
 function selecdia() {
     texdia = fechaseleccionada;
-    confirmarfechas();
 
     fetch("/consulta", {
         method: "POST",

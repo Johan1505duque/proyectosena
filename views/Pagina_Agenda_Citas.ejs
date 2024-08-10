@@ -36,19 +36,20 @@
             </div>
         </div>
         <!--Seccion iconos de redes sociales-->
-        <div class="formas-informacion">
-            <div class="portadaInicio">
-                <div class="formas-informacion-childs">
-                    <h2 id="encabezadoAgenda">Agenda Tu Cita</h2><br>
-                    <div id="redes" class="iconos">
-                        <i class='bx bxl-whatsapp'></i>
-                        <i class='bx bxl-tiktok'></i>
-                        <i class='bx bxl-instagram'></i>
-                    </div>     
+            <div class="formas-informacion">
+                <div class="portadaInicio">
+                    <div class="formas-informacion-childs">
+                        <h2 id="encabezadoAgenda">Agenda Tu Cita</h2><br>
+                        <div id="redes" class="iconos">
+                            <i class='bx bxl-whatsapp'></i>
+                            <i class='bx bxl-tiktok'></i>
+                            <i class='bx bxl-instagram'></i>
+                        </div>     
                     <div id="inicio">
-                        
-                        <button id="AgendaDisponible" class="botones" type="submit" onclick="agendadisponible()">Agenda Disponible</button>
-                        <button id="modificarcitas" class="botones" type="submit" onclick="ActualizarCita()">¿Deseas cancelar o reagendar una cita? </button>
+                        <button id="AgendaDisponible" class="botones" type="submit" onclick="agendadisponible()">Agenda Disponible
+                        </button>
+                        <button id="modificarcitas" class="botones" type="submit" onclick="ActualizarCita()">¿Deseas cancelar o reagendar una cita? 
+                        </button>
                     </div>
                     <form id="formulario" action="/cita" method="post">
                         <div id="servicio" name="servicio" required style="display: none;">
@@ -193,23 +194,25 @@
                 <div id="lista-citas" >
                     <!-- Aquí se mostrarán las citas -->
                 </div>
-                <p id="confirmar"></p>
                 
-                <button id="retornar" class="botones"  type="submit" onclick="retornar()">Continua con nosotros</button>
-
-                <p id="mensaje4">¡Descubre más servicios y sigue disfrutando con nosotros! Presiona el botón Más Servicios ahora.</p>
-
-                <button id="retornarAgenda" class="botones"  type="submit" onclick="retornarAgenda()">Mas servicios</button>
-
-                <div id="mensajesconfirmar">
-                    <p id="mensaje1"></p>
-                    <p id="mensaje2"></p>
+                
+                <div id="mensajeria">
+                    <div id="mensajesconfirmar">
+                        <p id="mensaje1"></p>
+                        <p id="mensaje2"></p>
+                        <p id="confirmar"></p>
+                        
+                        <button id="retornar" class="botones"  type="submit" onclick="retornar()">Continua con nosotros</button>
+                        <p id="mensaje4">¡Descubre más servicios y sigue disfrutando con nosotros! Presiona el botón Más Servicios ahora.</p>
+                    </div>
+                    <button id="AgendarCita" class="botones" type="submit" onclick="confirmardatos()">Agendar Cita</button>
                 </div>
-                <button id="AgendarCita" class="botones" type="submit" onclick="confirmardatos()">Agendar Cita</button>
+                <button id="retornarAgenda" class="botones"  type="submit" onclick="retornarAgenda()">Mas servicios</button>
             </div>
         </div>
         <script src="Pagina_Agenda_Cita.js"></script>
-</body>
-
-</html>
-
+    </body>
+    
+    </html>
+    
+    
