@@ -528,8 +528,8 @@ botonReagendar.addEventListener("click", function() {
 let idCitaAReagendar = null;
 
 document.addEventListener("DOMContentLoaded", function() {
-    const manicuristas = ["Aura lopez", "Leidy Camargo", "Adrina Perez", "Camila Martinez"];
-    const servicios = ["manicureBásico", "pedicureBásico", "esmaltadoPermanente", "esmaltadoPermanente", "manicureFrancés", "pedicureFrancés", "uñasAcrílicas", "uñasDeGel", "decoraciónDeUñas", "manicureSpa", "pedicureSpa"];
+    const manicuristas = ["Aura ", "Leidy ", "Adrina ", " Deisy ","  Andrea  ","  Camila  "];
+    const servicios = ["manicureBásico", "pedicure Básico", "esmaltado Permanente", "esmaltado Permanente", "manicure Francés", "pedicure Francés", "uñas Acrílicas", "uñas De Gel", "decoración De Uñas", "manicure Spa", "pedicure Spa"];
 
     const selectManicurista = document.getElementById("manicurista-reagendar");
     manicuristas.forEach(manicurista => {

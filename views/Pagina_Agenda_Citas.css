@@ -86,7 +86,7 @@ p, #mensajesconfirmar{
     margin: 40px 0 25px 0;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: right;
     background-color: #e7b2a4;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -105,8 +105,8 @@ p, #mensajesconfirmar{
 #lista-citas {
     top: 0;
     left: 0;
-    width: 46rem;
-    height: 20rem;
+    width: 40rem;
+    height: 25rem;
     overflow-y: scroll; /* Permitir el desplazamiento vertical */
 }
 .iconos{
@@ -186,6 +186,7 @@ p, #mensajesconfirmar{
     padding: 10px 15px; 
     text-align: center;
 }
+
 #resistrarse:hover{
     background-color: #FF9EAA;
     color: #000;
