@@ -79,7 +79,7 @@
     }
 
     function confirmarinicio(event) {
-    /*    event.preventDefault();  // Previene el envío del formulario
+        event.preventDefault();  // Previene el envío del formulario
 
         const email = document.getElementById('correo-inicio').value;
         const password = document.getElementById('contraseña-inicio').value;
@@ -107,7 +107,7 @@
         .catch(error => {
             console.error('Error:', error);
             alert('Ocurrió un error al intentar iniciar sesión. Por favor, intente de nuevo más tarde.');
-        });*/
+        });
         alert("el correo o contraseña no son correctos por favor verifique sus cre e intentelo de nuevo ")
     }
 
