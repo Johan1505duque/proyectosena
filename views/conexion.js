@@ -1,7 +1,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
 const conexion = mysql.createConnection({
     host: "localhost",
@@ -120,6 +120,6 @@ app.get('/horas-disponibles', (req, res) => {
 
 
 app.listen(PORT, function() {
-    console.log(`Servidor escuchando en el puerto http://localhost:3000`);
+    console.log(`Servidor escuchando en el puerto http://localhost:3001`);
 });
 

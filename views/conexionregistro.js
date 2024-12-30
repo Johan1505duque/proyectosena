@@ -42,6 +42,7 @@ app.post("/validar", function(req, res) {
 app.post("/api/login", (req, res) => {
     const { email, password } = req.body;
     console.log(`Intentando iniciar sesión con el correo: ${email}`);
+    
     const query = "SELECT * FROM usuarios WHERE email = ? AND password = ?";
     conexion.query(query, [email, password], (error, results) => {
         if (error) {
@@ -49,9 +50,11 @@ app.post("/api/login", (req, res) => {
             res.status(500).send('Error en la consulta de login');
         } else {
             if (results.length > 0) {
-                res.json({ success: true });
+                // Si el login es exitoso, redirigir a la página de agenda
+                res.redirect("/agenda"); // O redirige a otra página de tu elección
             } else {
-                res.json({ success: false });
+                // Si no se encuentra el usuario, podrías mostrar un mensaje o redirigir a una página de error
+                res.json({ success: false, message: 'Usuario no encontrado, por favor regístrese.' });
             }
         }
     });

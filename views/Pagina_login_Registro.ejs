@@ -81,19 +81,17 @@
                 </div>
                 <p>Síguenos en nuestras redes</p>
 
-                <form class="form">
+                <form class="form" id="loginForm">
                     <label>
                         <i class='bx bx-envelope'></i>
-                        <input id="correo-inicio" type="email" placeholder="Correo Electrónico" required>
+                        <input id="correo-inicio" name="email" type="email" placeholder="Correo Electrónico" required>
                     </label>
                     <label>
                         <i class='bx bx-lock-alt'></i>
-                        <input id="contraseña-inicio" type="password" placeholder="Contraseña" required>
+                        <input id="contraseña-inicio" name="password" type="password" placeholder="Contraseña" required>
                     </label>
-                    <p id="mensaje">
-                        
-                    </p>
-                    <button id="enlace" type="button" onclick="confirmarinicio()">Iniciar Sesión</button>
+                    <p id="mensaje"></p>
+                    <button id="iniciarSesion" type="submit">Iniciar Sesión</button>
                 </form>
             </div>
         </div>
